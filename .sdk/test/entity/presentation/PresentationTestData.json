@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "presentation": {
+      "PRESENTATION00": {
+        "color_scheme": "s96",
+        "content": "s97",
+        "created_at": "s98",
+        "download_url": "s99",
+        "expires_at": "s9a",
+        "format": "s9b",
+        "id": "PRESENTATION00",
+        "include_chart": false,
+        "language": "s9e",
+        "layout": "s9f",
+        "preview_url": "sa0",
+        "slide": "sa1",
+        "status": "sa2",
+        "theme": "sa3",
+        "topic": "sa4"
+      },
+      "PRESENTATION01": {
+        "color_scheme": "s12c",
+        "content": "s12d",
+        "created_at": "s12e",
+        "download_url": "s12f",
+        "expires_at": "s130",
+        "format": "s131",
+        "id": "PRESENTATION01",
+        "include_chart": false,
+        "language": "s134",
+        "layout": "s135",
+        "preview_url": "s136",
+        "slide": "s137",
+        "status": "s138",
+        "theme": "s139",
+        "topic": "s13a"
+      },
+      "PRESENTATION02": {
+        "color_scheme": "s1c2",
+        "content": "s1c3",
+        "created_at": "s1c4",
+        "download_url": "s1c5",
+        "expires_at": "s1c6",
+        "format": "s1c7",
+        "id": "PRESENTATION02",
+        "include_chart": false,
+        "language": "s1ca",
+        "layout": "s1cb",
+        "preview_url": "s1cc",
+        "slide": "s1cd",
+        "status": "s1ce",
+        "theme": "s1cf",
+        "topic": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "presentation": {
+      "presentation_ref01": {
+        "color_scheme": "s258",
+        "content": "s259",
+        "created_at": "s25a",
+        "download_url": "s25b",
+        "expires_at": "s25c",
+        "format": "s25d",
+        "include_chart": false,
+        "language": "s260",
+        "layout": "s261",
+        "preview_url": "s262",
+        "slide": "s263",
+        "status": "s264",
+        "theme": "s265",
+        "topic": "s266"
+      }
+    }
+  }
+}

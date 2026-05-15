@@ -1,0 +1,395 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "AI Presentation Generator",
+    "description": "This API allows users to create professional and visually appealing presentations using AI technology. By simply inputting content, users can generate presentations instantly with customizable themes and layouts, saving time and enhancing productivity.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9#"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.pi.inc/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/presentations": {
+      "post": {
+        "summary": "Generate a presentation",
+        "description": "Creates a professional presentation using AI technology based on the provided content, theme, and layout preferences.",
+        "operationId": "createPresentation",
+        "tags": [
+          "Presentations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresentationRequest"
+              },
+              "examples": {
+                "basicPresentation": {
+                  "summary": "Basic presentation example",
+                  "value": {
+                    "content": "Introduction to AI Technology",
+                    "topic": "Artificial Intelligence",
+                    "slides": 10,
+                    "theme": "modern",
+                    "layout": "professional"
+                  }
+                },
+                "detailedPresentation": {
+                  "summary": "Detailed presentation with outline",
+                  "value": {
+                    "content": "Quarterly Business Review: Sales increased by 25%, new product launches successful, expanding to 3 new markets",
+                    "topic": "Q4 Business Review",
+                    "slides": 15,
+                    "theme": "corporate",
+                    "layout": "business",
+                    "includeCharts": true,
+                    "language": "en"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Presentation successfully generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful generation",
+                    "value": {
+                      "id": "pres_abc123def456",
+                      "status": "completed",
+                      "downloadUrl": "https://api.pi.inc/v1/presentations/pres_abc123def456/download",
+                      "previewUrl": "https://api.pi.inc/v1/presentations/pres_abc123def456/preview",
+                      "slides": 10,
+                      "createdAt": "2024-01-15T10:30:00Z",
+                      "format": "pptx"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid input parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "invalidInput": {
+                    "summary": "Invalid input example",
+                    "value": {
+                      "error": "ValidationError",
+                      "message": "Content field is required and cannot be empty",
+                      "code": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/presentations/{presentationId}": {
+      "get": {
+        "summary": "Get presentation details",
+        "description": "Retrieves details and metadata for a specific presentation by its ID.",
+        "operationId": "getPresentation",
+        "tags": [
+          "Presentations"
+        ],
+        "parameters": [
+          {
+            "name": "presentationId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the presentation",
+            "schema": {
+              "type": "string",
+              "example": "pres_abc123def456"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Presentation details retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Presentation not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PresentationRequest": {
+        "type": "object",
+        "required": [
+          "content",
+          "topic"
+        ],
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "The main content or key points for the presentation",
+            "minLength": 10,
+            "maxLength": 10000,
+            "example": "Introduction to Machine Learning: supervised learning, unsupervised learning, neural networks"
+          },
+          "topic": {
+            "type": "string",
+            "description": "The main topic or title of the presentation",
+            "minLength": 3,
+            "maxLength": 200,
+            "example": "Introduction to Machine Learning"
+          },
+          "slides": {
+            "type": "integer",
+            "description": "Number of slides to generate",
+            "minimum": 3,
+            "maximum": 50,
+            "default": 10,
+            "example": 10
+          },
+          "theme": {
+            "type": "string",
+            "description": "Visual theme for the presentation",
+            "enum": [
+              "modern",
+              "classic",
+              "minimalist",
+              "corporate",
+              "creative",
+              "academic"
+            ],
+            "default": "modern",
+            "example": "modern"
+          },
+          "layout": {
+            "type": "string",
+            "description": "Layout style for the slides",
+            "enum": [
+              "professional",
+              "business",
+              "educational",
+              "casual",
+              "formal"
+            ],
+            "default": "professional",
+            "example": "professional"
+          },
+          "includeCharts": {
+            "type": "boolean",
+            "description": "Whether to include charts and graphs where applicable",
+            "default": false,
+            "example": true
+          },
+          "language": {
+            "type": "string",
+            "description": "Language for the presentation content",
+            "pattern": "^[a-z]{2}$",
+            "default": "en",
+            "example": "en"
+          },
+          "colorScheme": {
+            "type": "string",
+            "description": "Primary color scheme for the presentation",
+            "enum": [
+              "blue",
+              "red",
+              "green",
+              "purple",
+              "orange",
+              "neutral"
+            ],
+            "default": "blue",
+            "example": "blue"
+          }
+        }
+      },
+      "PresentationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the presentation",
+            "example": "pres_abc123def456"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the presentation generation",
+            "enum": [
+              "processing",
+              "completed",
+              "failed"
+            ],
+            "example": "completed"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to download the generated presentation",
+            "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/download"
+          },
+          "previewUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to preview the presentation online",
+            "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/preview"
+          },
+          "slides": {
+            "type": "integer",
+            "description": "Number of slides in the presentation",
+            "example": 10
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the presentation was created",
+            "example": "2024-01-15T10:30:00Z"
+          },
+          "format": {
+            "type": "string",
+            "description": "File format of the presentation",
+            "enum": [
+              "pptx",
+              "pdf",
+              "key"
+            ],
+            "example": "pptx"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Applied theme",
+            "example": "modern"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the download link expires",
+            "example": "2024-01-22T10:30:00Z"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "ValidationError"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "Content field is required and cannot be empty"
+          },
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code",
+            "example": 400
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional error details",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "API key for authentication. Include your API key in the X-API-Key header."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Presentations",
+      "description": "Operations for generating and managing AI-powered presentations"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+# BasicPresentationFlow
+
+main: kit: flow: BasicPresentationFlow:
+{
+  entity: "presentation",
+  kind: "basic",
+  name: "BasicPresentationFlow",
+  step: [
+    {
+      input: {
+        ref: "presentation_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "presentation_ref01",
+        srcdatavar: "presentation_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "presentation01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-presentation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPresentationFlow"
+}

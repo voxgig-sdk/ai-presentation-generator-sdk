@@ -1,0 +1,18 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: presentation: {
+    path: "/presentations": {
+      op: create: method: *POST
+    }
+    path: "/presentations/{presentationId}": {
+      rename: param: "presentationId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}
