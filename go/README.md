@@ -5,14 +5,14 @@ The Golang SDK for the AiPresentationGenerator API. Provides an entity-oriented 
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/ai-presentation-generator-sdk
+go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/ai-presentation-generator-sdk=../path/to/github.com/voxgig-sdk/ai-presentation-generator-sdk
+go mod edit -replace github.com/voxgig-sdk/ai-presentation-generator-sdk/go=../path/to/github.com/voxgig-sdk/ai-presentation-generator-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk"
-    "github.com/voxgig-sdk/ai-presentation-generator-sdk/core"
+    sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk/go"
+    "github.com/voxgig-sdk/ai-presentation-generator-sdk/go/core"
 )
 
 func main() {
@@ -358,7 +358,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/ai-presentation-generator-sdk/
+github.com/voxgig-sdk/ai-presentation-generator-sdk/go/
 ├── ai-presentation-generator.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -367,7 +367,7 @@ github.com/voxgig-sdk/ai-presentation-generator-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/ai-presentation-generator-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/ai-presentation-generator-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

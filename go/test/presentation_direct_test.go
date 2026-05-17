@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk"
-	"github.com/voxgig-sdk/ai-presentation-generator-sdk/core"
+	sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk/go"
+	"github.com/voxgig-sdk/ai-presentation-generator-sdk/go/core"
 )
 
 func TestPresentationDirect(t *testing.T) {
