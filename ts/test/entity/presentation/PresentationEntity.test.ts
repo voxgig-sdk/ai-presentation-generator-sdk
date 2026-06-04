@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID': idmap,
     'AI_PRESENTATION_GENERATOR_TEST_LIVE': 'FALSE',
     'AI_PRESENTATION_GENERATOR_TEST_EXPLAIN': 'FALSE',
-    'AI_PRESENTATION_GENERATOR_APIKEY': 'NONE',
   })
 
   idmap = env['AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new AiPresentationGeneratorSDK(merge([
       {
-        apikey: env.AI_PRESENTATION_GENERATOR_APIKEY,
       },
       extra
     ]))

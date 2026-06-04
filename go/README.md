@@ -28,16 +28,13 @@ package main
 
 import (
     "fmt"
-    "os"
 
     sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk/go"
     "github.com/voxgig-sdk/ai-presentation-generator-sdk/go/core"
 )
 
 func main() {
-    client := sdk.NewAiPresentationGeneratorSDK(map[string]any{
-        "apikey": os.Getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
-    })
+    client := sdk.NewAiPresentationGeneratorSDK(map[string]any{})
 ```
 
 ### 3. Load a presentation
@@ -152,7 +149,6 @@ Create a `.env.local` file at the project root:
 
 ```
 AI-PRESENTATION-GENERATOR_TEST_LIVE=TRUE
-AI-PRESENTATION-GENERATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -174,7 +170,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |

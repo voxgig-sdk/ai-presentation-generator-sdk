@@ -20,9 +20,6 @@ class AiPresentationGeneratorConfig
             ],
             "options" => [
                 "base" => "https://api.pi.inc/v1",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

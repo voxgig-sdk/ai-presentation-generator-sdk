@@ -16,8 +16,22 @@ main: {
       ]
       title: "AI Presentation Generator"
       version: "1.0.0"
+      tagline: "Generate professional, themable presentations from plain content using an AI service from pi.inc"
+      homepage: "https://www.pi.inc"
+      docs_url: "https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9"
+      about_md: `The AI Presentation Generator is a hosted API from [pi.inc](https://www.pi.inc) (branded as "Presentation Intelligence") that turns supplied content into ready-to-use slide decks. Callers provide source material and the service returns a generated presentation that can be styled with different themes and layouts.
+
+What you get from the API:
+
+- Programmatic generation of presentations from user-supplied content
+- Customizable themes and layouts on the resulting decks
+- A single base URL at \`https://api.pi.inc/v1\`
+
+Operational notes: the [freepublicapis.com listing](https://freepublicapis.com/ai-presentation-generator) reports the service as healthy with a ~614 ms average response time and CORS disabled. Authentication, pricing, rate limits, and licence terms are not documented on the public listing — check the [official docs](https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9) before integrating.`
+      entity_desc: {
+        presentation: "An AI-generated slide deck produced from user-supplied content, with selectable themes and layouts; served from the `https://api.pi.inc/v1` base."
+      }
+      auth: false
     }
   }
-}
-
 }

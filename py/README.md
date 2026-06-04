@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
 
-client = AiPresentationGeneratorSDK({
-    "apikey": os.environ.get("AI-PRESENTATION-GENERATOR_APIKEY"),
-})
+client = AiPresentationGeneratorSDK({})
 ```
 
 ### 3. Load a presentation
@@ -125,7 +122,6 @@ Create a `.env.local` file at the project root:
 
 ```
 AI-PRESENTATION-GENERATOR_TEST_LIVE=TRUE
-AI-PRESENTATION-GENERATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,7 +145,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
