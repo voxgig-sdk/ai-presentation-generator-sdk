@@ -69,12 +69,14 @@ def presentation_direct_setup(mockres)
   env = Runner.env_override({
     "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID" => {},
     "AIPRESENTATIONGENERATOR_TEST_LIVE" => "FALSE",
+    "AIPRESENTATIONGENERATOR_APIKEY" => "NONE",
   })
 
   live = env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["AIPRESENTATIONGENERATOR_APIKEY"],
     }
     client = AiPresentationGeneratorSDK.new(merged_opts)
     return {

@@ -129,6 +129,7 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 		"AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID": idmap,
 		"AIPRESENTATIONGENERATOR_TEST_LIVE":      "FALSE",
 		"AIPRESENTATIONGENERATOR_TEST_EXPLAIN":   "FALSE",
+		"AIPRESENTATIONGENERATOR_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"])
@@ -139,6 +140,7 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["AIPRESENTATIONGENERATOR_APIKEY"],
 			},
 			extra,
 		})

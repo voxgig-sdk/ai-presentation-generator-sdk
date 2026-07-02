@@ -1,20 +1,8 @@
 # AiPresentationGenerator SDK
 
-Generate professional, themable presentations from plain content using an AI service from pi.inc
+AI Presentation Generator client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About AI Presentation Generator
-
-The AI Presentation Generator is a hosted API from [pi.inc](https://www.pi.inc) (branded as "Presentation Intelligence") that turns supplied content into ready-to-use slide decks. Callers provide source material and the service returns a generated presentation that can be styled with different themes and layouts.
-
-What you get from the API:
-
-- Programmatic generation of presentations from user-supplied content
-- Customizable themes and layouts on the resulting decks
-- A single base URL at `https://api.pi.inc/v1`
-
-Operational notes: the [freepublicapis.com listing](https://freepublicapis.com/ai-presentation-generator) reports the service as healthy with a ~614 ms average response time and CORS disabled. Authentication, pricing, rate limits, and licence terms are not documented on the public listing — check the [official docs](https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9) before integrating.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install ai-presentation-generator-sdk
 luarocks install ai-presentation-generator-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { AiPresentationGeneratorSDK } from 'ai-presentation-generator'
 
-const client = new AiPresentationGeneratorSDK({})
+const client = new AiPresentationGeneratorSDK({
+  apikey: process.env.AI-PRESENTATION-GENERATOR_APIKEY,
+})
 
+// Load presentation data
+const presentation = await client.Presentation().load({})
+console.log(presentation.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Presentation** | An AI-generated slide deck produced from user-supplied content, with selectable themes and layouts; served from the `https://api.pi.inc/v1` base. | `/presentations` |
+| **Presentation** |  | `/presentations` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
 
-client = AiPresentationGeneratorSDK({})
+client = AiPresentationGeneratorSDK({
+    "apikey": os.environ.get("AI-PRESENTATION-GENERATOR_APIKEY"),
+})
 
 
 # Load a specific presentation
-presentation, err = client.Presentation(None).load(
-    {"id": "example_id"}, None
-)
+presentation, err = client.Presentation().load({"id": "example_id"})
+print(presentation)
 ```
 
 ### PHP
@@ -125,13 +119,14 @@ presentation, err = client.Presentation(None).load(
 <?php
 require_once 'aipresentationgenerator_sdk.php';
 
-$client = new AiPresentationGeneratorSDK([]);
+$client = new AiPresentationGeneratorSDK([
+    "apikey" => getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+]);
 
 
 // Load a specific presentation
-[$presentation, $err] = $client->Presentation(null)->load(
-    ["id" => "example_id"], null
-);
+[$presentation, $err] = $client->Presentation()->load(["id" => "example_id"]);
+print_r($presentation);
 ```
 
 ### Golang
@@ -139,8 +134,13 @@ $client = new AiPresentationGeneratorSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk/go"
 
-client := sdk.NewAiPresentationGeneratorSDK(map[string]any{})
+client := sdk.NewAiPresentationGeneratorSDK(map[string]any{
+    "apikey": os.Getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+})
 
+// Load presentation data
+presentation, err := client.Presentation(nil).Load(map[string]any{}, nil)
+fmt.Println(presentation)
 ```
 
 ### Ruby
@@ -148,13 +148,14 @@ client := sdk.NewAiPresentationGeneratorSDK(map[string]any{})
 ```ruby
 require_relative "AiPresentationGenerator_sdk"
 
-client = AiPresentationGeneratorSDK.new({})
+client = AiPresentationGeneratorSDK.new({
+  "apikey" => ENV["AI-PRESENTATION-GENERATOR_APIKEY"],
+})
 
 
 # Load a specific presentation
-presentation, err = client.Presentation(nil).load(
-  { "id" => "example_id" }, nil
-)
+presentation, err = client.Presentation().load({ "id" => "example_id" })
+puts presentation
 ```
 
 ### Lua
@@ -162,13 +163,14 @@ presentation, err = client.Presentation(nil).load(
 ```lua
 local sdk = require("ai-presentation-generator_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+})
 
 
 -- Load a specific presentation
-local presentation, err = client:Presentation(nil):load(
-  { id = "example_id" }, nil
-)
+local presentation, err = client:Presentation():load({ id = "example_id" })
+print(presentation)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +189,21 @@ const result = await client.Presentation().load({ id: 'test01' })
 ### Python
 
 ```python
-client = AiPresentationGeneratorSDK.test(None, None)
-result, err = client.Presentation(None).load(
-    {"id": "test01"}, None
-)
+client = AiPresentationGeneratorSDK.test()
+result, err = client.Presentation().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = AiPresentationGeneratorSDK::test(null, null);
-[$result, $err] = $client->Presentation(null)->load(
-    ["id" => "test01"], null
-);
+$client = AiPresentationGeneratorSDK::test();
+[$result, $err] = $client->Presentation()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Presentation(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +212,15 @@ result, err := client.Presentation(nil).Load(
 ### Ruby
 
 ```ruby
-client = AiPresentationGeneratorSDK.test(nil, nil)
-result, err = client.Presentation(nil).load(
-  { "id" => "test01" }, nil
-)
+client = AiPresentationGeneratorSDK.test
+result, err = client.Presentation().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Presentation(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Presentation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,11 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the AI Presentation Generator
-
-- Upstream: [https://www.pi.inc](https://www.pi.inc)
-- API docs: [https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9](https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9)
 
 ---
 

@@ -97,6 +97,7 @@ function presentation_basic_setup(extra)
     ["AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"] = idmap,
     ["AIPRESENTATIONGENERATOR_TEST_LIVE"] = "FALSE",
     ["AIPRESENTATIONGENERATOR_TEST_EXPLAIN"] = "FALSE",
+    ["AIPRESENTATIONGENERATOR_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -108,6 +109,7 @@ function presentation_basic_setup(extra)
   if env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["AIPRESENTATIONGENERATOR_APIKEY"],
       },
       extra or {},
     })
