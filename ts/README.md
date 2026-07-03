@@ -10,7 +10,7 @@ The TypeScript SDK for the AiPresentationGenerator API — a type-safe, entity-o
 
 ## Install
 ```bash
-npm install ai-presentation-generator
+npm install @voxgig-sdk/ai-presentation-generator
 ```
 ## Tutorial: your first API call
 

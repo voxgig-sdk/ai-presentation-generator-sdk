@@ -10,13 +10,13 @@ The Ruby SDK for the AiPresentationGenerator API — an entity-oriented client u
 
 ## Install
 ```bash
-gem install ai-presentation-generator-sdk
+gem install voxgig-sdk-ai-presentation-generator
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "ai-presentation-generator-sdk"
+gem "voxgig-sdk-ai-presentation-generator"
 ```
 
 Then run:

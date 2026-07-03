@@ -10,7 +10,7 @@ The Lua SDK for the AiPresentationGenerator API — an entity-oriented client us
 
 ## Install
 ```bash
-luarocks install ai-presentation-generator-sdk
+luarocks install voxgig-sdk-ai-presentation-generator
 ```
 
 If the module is not yet published, add the source directory to

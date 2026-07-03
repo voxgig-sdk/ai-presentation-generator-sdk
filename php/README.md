@@ -10,7 +10,7 @@ The PHP SDK for the AiPresentationGenerator API — an entity-oriented client us
 
 ## Install
 ```bash
-composer require voxgig/ai-presentation-generator-sdk
+composer require voxgig-sdk/ai-presentation-generator
 ```
 
 

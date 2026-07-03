@@ -10,7 +10,7 @@ The Python SDK for the AiPresentationGenerator API — an entity-oriented client
 
 ## Install
 ```bash
-pip install ai-presentation-generator-sdk
+pip install voxgig-sdk-ai-presentation-generator
 ```
 
 Or install from source:
