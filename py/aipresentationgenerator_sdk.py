@@ -220,25 +220,15 @@ class AiPresentationGeneratorSDK:
         }
 
 
-    @property
-    def presentation(self):
-        """Idiomatic facade: client.presentation.list() / client.presentation.load({"id": ...})."""
-        from entity.presentation_entity import PresentationEntity
-        cached = getattr(self, "_presentation", None)
-        if cached is None:
-            cached = PresentationEntity(self, None)
-            self._presentation = cached
-        return cached
-
-    def Presentation(self, data=None):
-        # Deprecated: use client.presentation instead.
+    def Presentation(self, data=None) -> "PresentationEntity":
+        """Entity factory: client.Presentation().list({}) / client.Presentation().load({"id": ...})."""
         from entity.presentation_entity import PresentationEntity
         return PresentationEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AiPresentationGeneratorSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class AiPresentationGeneratorSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.presentation_entity import PresentationEntity

@@ -110,7 +110,7 @@ Alias for `AiPresentationGeneratorSDK.test()`.
 ## PresentationEntity
 
 ```ts
-const presentation = client.presentation
+const presentation = client.Presentation()
 ```
 
 ### Fields
@@ -140,7 +140,7 @@ const presentation = client.presentation
 Create a new entity with the given data.
 
 ```ts
-const result = await client.presentation.create({
+const result = await client.Presentation().create({
   content: /* `$STRING` */,
   topic: /* `$STRING` */,
 })
@@ -151,7 +151,7 @@ const result = await client.presentation.create({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.presentation.load({ id: 'presentation_id' })
+const result = await client.Presentation().load({ id: 'presentation_id' })
 ```
 
 ### Common Methods

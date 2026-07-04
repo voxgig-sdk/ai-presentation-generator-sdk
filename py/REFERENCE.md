@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## PresentationEntity
 
 ```python
-presentation = client.presentation
+presentation = client.Presentation()
 ```
 
 ### Fields
@@ -111,9 +111,9 @@ presentation = client.presentation
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.presentation.create({
-    "content": # `$STRING`,
-    "topic": # `$STRING`,
+result = client.Presentation().create({
+    "content": ...,  # `$STRING`
+    "topic": ...,  # `$STRING`
 })
 ```
 
@@ -122,7 +122,7 @@ result = client.presentation.create({
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.presentation.load({"id": "presentation_id"})
+result = client.Presentation().load({"id": "presentation_id"})
 ```
 
 ### Common Methods

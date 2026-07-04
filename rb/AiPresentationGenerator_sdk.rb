@@ -208,13 +208,7 @@ class AiPresentationGeneratorSDK
   end
 
 
-  # Idiomatic facade: client.presentation.list / client.presentation.load({ "id" => ... })
-  def presentation
-    require_relative 'entity/presentation_entity'
-    @presentation ||= PresentationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.presentation instead.
+  # Canonical facade: client.Presentation.list / client.Presentation.load({ "id" => ... })
   def Presentation(data = nil)
     require_relative 'entity/presentation_entity'
     PresentationEntity.new(self, data)

@@ -32,19 +32,22 @@ const client = new AiPresentationGeneratorSDK({
 
 ### 3. Load a presentation
 
-```ts
-const result = await client.presentation.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const presentation = await client.Presentation().load({ id: 'example_id' })
+  console.log(presentation)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
 ### 4. Create, update, and remove
 
 ```ts
-// Create
-const created = await client.presentation.create({
+// Create — returns the created Presentation
+const created = await client.Presentation().create({
   name: 'Example',
 })
 
@@ -64,6 +67,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -92,9 +98,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AiPresentationGeneratorSDK.test()
 
-const result = await client.presentation.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const presentation = await client.Presentation().load({ id: 'test01' })
+// presentation is a bare entity populated with mock response data
+console.log(presentation)
 ```
 
 You can also use the instance method:
@@ -109,7 +115,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.presentation
+const entity = client.Presentation()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -208,29 +214,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): AiPresentationGeneratorSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -293,7 +300,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.presentation`
+Create an instance: `const presentation = client.Presentation()`
 
 #### Operations
 
@@ -325,13 +332,13 @@ Create an instance: `const presentation = client.presentation`
 #### Example: Load
 
 ```ts
-const presentation = await client.presentation.load({ id: 'presentation_id' })
+const presentation = await client.Presentation().load({ id: 'presentation_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const presentation = await client.presentation.create({
+const presentation = await client.Presentation().create({
   content: /* `$STRING` */,
   topic: /* `$STRING` */,
 })
@@ -405,7 +412,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const presentation = client.presentation
+const presentation = client.Presentation()
 await presentation.load({ id: "example_id" })
 
 // presentation.data() now returns the loaded presentation data

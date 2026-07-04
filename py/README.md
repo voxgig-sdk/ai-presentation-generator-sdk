@@ -36,10 +36,12 @@ client = AiPresentationGeneratorSDK({
 
 ### 3. Load a presentation
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.presentation.load({"id": "example_id"})
-    print(result)
+    presentation = client.Presentation().load({"id": "example_id"})
+    print(presentation)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -47,8 +49,8 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create
-created = client.presentation.create({"name": "Example"})
+# Create — returns the bare created record (a dict)
+created = client.Presentation().create({"name": "Example"})
 
 ```
 
@@ -95,8 +97,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AiPresentationGeneratorSDK.test()
 
-result = client.presentation.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+presentation = client.Presentation().load({"id": "test01"})
+# presentation contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -245,7 +248,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.presentation`
+Create an instance: `presentation = client.Presentation()`
 
 #### Operations
 
@@ -276,16 +279,16 @@ Create an instance: `const presentation = client.presentation`
 
 #### Example: Load
 
-```ts
-const presentation = await client.presentation.load({ id: 'presentation_id' })
+```python
+presentation = client.Presentation().load({"id": "presentation_id"})
 ```
 
 #### Example: Create
 
-```ts
-const presentation = await client.presentation.create({
-  content: /* `$STRING` */,
-  topic: /* `$STRING` */,
+```python
+presentation = client.Presentation().create({
+    "content": ...,  # `$STRING`
+    "topic": ...,  # `$STRING`
 })
 ```
 
@@ -360,7 +363,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-presentation = client.presentation
+presentation = client.Presentation()
 presentation.load({"id": "example_id"})
 
 # presentation.data_get() now returns the loaded presentation data

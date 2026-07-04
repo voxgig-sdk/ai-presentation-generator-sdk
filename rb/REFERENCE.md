@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## PresentationEntity
 
 ```ruby
-presentation = client.presentation
+presentation = client.Presentation
 ```
 
 ### Fields
@@ -117,7 +117,7 @@ presentation = client.presentation
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.presentation.create({
+result = client.Presentation.create({
   "content" => # `$STRING`,
   "topic" => # `$STRING`,
 })
@@ -128,7 +128,7 @@ result = client.presentation.create({
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.presentation.load({ "id" => "presentation_id" })
+result = client.Presentation.load({ "id" => "presentation_id" })
 ```
 
 ### Common Methods

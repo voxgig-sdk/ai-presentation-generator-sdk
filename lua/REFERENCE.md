@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## PresentationEntity
 
 ```lua
-local presentation = client:presentation(nil)
+local presentation = client:Presentation(nil)
 ```
 
 ### Fields
@@ -114,7 +114,7 @@ local presentation = client:presentation(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:presentation():create({
+local result, err = client:Presentation():create({
   content = --[[ `$STRING` ]],
   topic = --[[ `$STRING` ]],
 })
@@ -125,7 +125,7 @@ local result, err = client:presentation():create({
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:presentation():load({ id = "presentation_id" })
+local result, err = client:Presentation():load({ id = "presentation_id" })
 ```
 
 ### Common Methods

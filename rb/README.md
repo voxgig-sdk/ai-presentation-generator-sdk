@@ -34,8 +34,9 @@ client = AiPresentationGeneratorSDK.new({
 
 ```ruby
 begin
-  result = client.presentation.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Presentation record (raises on error).
+  presentation = client.Presentation.load({ "id" => "example_id" })
+  puts presentation
 rescue => err
   warn "load failed: #{err}"
 end
@@ -44,8 +45,8 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# Create
-created = client.presentation.create({ "name" => "Example" })
+# create returns the bare created Presentation record.
+created = client.Presentation.create({ "name" => "Example" })
 
 ```
 
@@ -90,13 +91,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = AiPresentationGeneratorSDK.test
+client = AiPresentationGeneratorSDK.test({
+  "entity" => { "presentation" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.presentation.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+presentation = client.Presentation.load({ "id" => "test01" })
+puts presentation
 ```
 
 ### Use a custom fetch function
@@ -244,7 +249,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.presentation`
+Create an instance: `presentation = client.Presentation`
 
 #### Operations
 
@@ -275,16 +280,17 @@ Create an instance: `const presentation = client.presentation`
 
 #### Example: Load
 
-```ts
-const presentation = await client.presentation.load({ id: 'presentation_id' })
+```ruby
+# load returns the bare Presentation record (raises on error).
+presentation = client.Presentation.load({ "id" => "presentation_id" })
 ```
 
 #### Example: Create
 
-```ts
-const presentation = await client.presentation.create({
-  content: /* `$STRING` */,
-  topic: /* `$STRING` */,
+```ruby
+presentation = client.Presentation.create({
+  "content" => nil, # `$STRING`
+  "topic" => nil, # `$STRING`
 })
 ```
 
@@ -360,7 +366,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-presentation = client.presentation
+presentation = client.Presentation
 presentation.load({ "id" => "example_id" })
 
 # presentation.data_get now returns the loaded presentation data

@@ -28,9 +28,9 @@ const client = new AiPresentationGeneratorSDK({
   apikey: process.env.AI_PRESENTATION_GENERATOR_APIKEY,
 })
 
-// Load presentation data
-const presentation = await client.presentation.load({})
-console.log(presentation.data)
+// Load presentation data (returns a Presentation)
+const presentation = await client.Presentation().load()
+console.log(presentation)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ client = AiPresentationGeneratorSDK({
 })
 
 
-# Load a specific presentation
-presentation = client.presentation.load({"id": "example_id"})
+# Load a specific presentation (returns the record, raises on error)
+presentation = client.Presentation().load({"id": "example_id"})
 print(presentation)
 ```
 
@@ -105,8 +105,8 @@ $client = new AiPresentationGeneratorSDK([
 ]);
 
 
-// Load a specific presentation
-$presentation = $client->presentation()->load(["id" => "example_id"]);
+// Load a specific presentation (returns the bare record; throws on error)
+$presentation = $client->Presentation()->load(["id" => "example_id"]);
 print_r($presentation);
 ```
 
@@ -134,8 +134,8 @@ client = AiPresentationGeneratorSDK.new({
 })
 
 
-# Load a specific presentation
-presentation = client.presentation.load({ "id" => "example_id" })
+# Load a specific presentation (returns the bare record; raises on error)
+presentation = client.Presentation.load({ "id" => "example_id" })
 puts presentation
 ```
 
@@ -150,7 +150,7 @@ local client = sdk.new({
 
 
 -- Load a specific presentation
-local presentation, err = client:presentation():load({ id = "example_id" })
+local presentation, err = client:Presentation():load({ id = "example_id" })
 print(presentation)
 ```
 
@@ -163,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AiPresentationGeneratorSDK.test()
-const result = await client.presentation.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const presentation = await client.Presentation().load({ id: 'test01' })
+// presentation is a bare Presentation populated with mock data
+console.log(presentation)
 ```
 
 ### Python
 
 ```python
 client = AiPresentationGeneratorSDK.test()
-result = client.presentation.load({"id": "test01"})
+presentation = client.Presentation().load({"id": "test01"})
+print(presentation)
 ```
 
 ### PHP
 
 ```php
-$client = AiPresentationGeneratorSDK::test();
-$result = $client->presentation()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AiPresentationGeneratorSDK::test([
+    "entity" => ["presentation" => ["test01" => ["id" => "test01"]]],
+]);
+$presentation = $client->Presentation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +198,18 @@ result, err := client.Presentation(nil).Load(
 ### Ruby
 
 ```ruby
-client = AiPresentationGeneratorSDK.test
-result = client.presentation.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AiPresentationGeneratorSDK.test({
+  "entity" => { "presentation" => { "test01" => { "id" => "test01" } } },
+})
+presentation = client.Presentation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:presentation():load({ id = "test01" })
+local result, err = client:Presentation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -35,9 +35,10 @@ $client = new AiPresentationGeneratorSDK([
 
 ```php
 try {
-    $result = $client->presentation()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Presentation record (throws on error).
+    $presentation = $client->Presentation()->load(["id" => "example_id"]);
+    print_r($presentation);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -45,8 +46,8 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// Create
-$created = $client->presentation()->create(["name" => "Example"]);
+// create() returns the bare created Presentation record.
+$created = $client->Presentation()->create(["name" => "Example"]);
 
 ```
 
@@ -91,13 +92,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = AiPresentationGeneratorSDK::test();
+$client = AiPresentationGeneratorSDK::test([
+    "entity" => ["presentation" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->presentation()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$presentation = $client->Presentation()->load(["id" => "test01"]);
+print_r($presentation);
 ```
 
 ### Use a custom fetch function
@@ -249,7 +254,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.presentation`
+Create an instance: `$presentation = $client->Presentation();`
 
 #### Operations
 
@@ -280,17 +285,18 @@ Create an instance: `const presentation = client.presentation`
 
 #### Example: Load
 
-```ts
-const presentation = await client.presentation.load({ id: 'presentation_id' })
+```php
+// load() returns the bare Presentation record (throws on error).
+$presentation = $client->Presentation()->load(["id" => "presentation_id"]);
 ```
 
 #### Example: Create
 
-```ts
-const presentation = await client.presentation.create({
-  content: /* `$STRING` */,
-  topic: /* `$STRING` */,
-})
+```php
+$presentation = $client->Presentation()->create([
+    "content" => null, // `$STRING`
+    "topic" => null, // `$STRING`
+]);
 ```
 
 
@@ -365,7 +371,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$presentation = $client->presentation();
+$presentation = $client->Presentation();
 $presentation->load(["id" => "example_id"]);
 
 // $presentation->dataGet() now returns the loaded presentation data

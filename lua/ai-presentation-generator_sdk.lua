@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:presentation():list() / client:presentation():load({ id = ... })
-function AiPresentationGeneratorSDK:presentation(data)
+-- Idiomatic facade: client:Presentation():list() / client:Presentation():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AiPresentationGeneratorSDK:Presentation(data)
   local EntityMod = require("entity.presentation_entity")
   if data == nil then
     if self._presentation == nil then
@@ -253,12 +254,6 @@ function AiPresentationGeneratorSDK:presentation(data)
     end
     return self._presentation
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:presentation() instead.
-function AiPresentationGeneratorSDK:Presentation(data)
-  local EntityMod = require("entity.presentation_entity")
   return EntityMod.new(self, data)
 end
 

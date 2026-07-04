@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## PresentationEntity
 
 ```php
-$presentation = $client->presentation();
+$presentation = $client->Presentation();
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ $presentation = $client->presentation();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->presentation()->create([
+$result = $client->Presentation()->create([
   "content" => /* `$STRING` */,
   "topic" => /* `$STRING` */,
 ]);
@@ -127,7 +127,7 @@ $result = $client->presentation()->create([
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->presentation()->load(["id" => "presentation_id"]);
+$result = $client->Presentation()->load(["id" => "presentation_id"]);
 ```
 
 ### Common Methods

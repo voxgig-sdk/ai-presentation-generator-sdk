@@ -233,10 +233,10 @@ class AiPresentationGeneratorSDK
 
     private $_presentation = null;
 
-    // Idiomatic facade: $client->presentation()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Presentation() (PHP method
-    // names are case-insensitive).
-    public function presentation($data = null)
+    // Canonical facade: $client->Presentation()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->presentation()
+    // resolves here too.
+    public function Presentation($data = null)
     {
         require_once __DIR__ . '/entity/presentation_entity.php';
         if ($data === null) {

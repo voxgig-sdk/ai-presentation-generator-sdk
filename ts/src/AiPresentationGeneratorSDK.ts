@@ -204,14 +204,7 @@ class AiPresentationGeneratorSDK {
 
 
 
-  _presentation?: PresentationEntity
-
-  // Idiomatic facade: `client.presentation.list()` / `client.presentation.load({ id })`.
-  get presentation(): PresentationEntity {
-    return (this._presentation ??= new PresentationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.presentation` instead. */
+  // Entity access: `client.Presentation().list()` / `client.Presentation().load({ id })`.
   Presentation(data?: any) {
     const self = this
     return new PresentationEntity(self,data)
