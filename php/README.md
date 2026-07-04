@@ -9,9 +9,10 @@ The PHP SDK for the AiPresentationGenerator API — an entity-oriented client us
 
 
 ## Install
-```bash
-composer require voxgig-sdk/ai-presentation-generator
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,23 +27,26 @@ loading a specific record.
 require_once 'aipresentationgenerator_sdk.php';
 
 $client = new AiPresentationGeneratorSDK([
-    "apikey" => getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+    "apikey" => getenv("AI_PRESENTATION_GENERATOR_APIKEY"),
 ]);
 ```
 
 ### 3. Load a presentation
 
 ```php
-[$result, $err] = $client->Presentation()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->presentation()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 ### 4. Create, update, and remove
 
 ```php
 // Create
-[$created, $_] = $client->Presentation()->create(["name" => "Example"]);
+$created = $client->presentation()->create(["name" => "Example"]);
 
 ```
 
@@ -54,28 +58,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -89,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = AiPresentationGeneratorSDK::test();
 
-[$result, $err] = $client->AiPresentationGenerator()->load(["id" => "test01"]);
+$result = $client->presentation()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -123,8 +130,8 @@ $client = new AiPresentationGeneratorSDK([
 Create a `.env.local` file at the project root:
 
 ```
-AI-PRESENTATION-GENERATOR_TEST_LIVE=TRUE
-AI-PRESENTATION-GENERATOR_APIKEY=<your-key>
+AI_PRESENTATION_GENERATOR_TEST_LIVE=TRUE
+AI_PRESENTATION_GENERATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -193,8 +200,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -238,7 +249,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.Presentation()`
+Create an instance: `const presentation = client.presentation`
 
 #### Operations
 
@@ -270,13 +281,13 @@ Create an instance: `const presentation = client.Presentation()`
 #### Example: Load
 
 ```ts
-const presentation = await client.Presentation().load({ id: 'presentation_id' })
+const presentation = await client.presentation.load({ id: 'presentation_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const presentation = await client.Presentation().create({
+const presentation = await client.presentation.create({
   content: /* `$STRING` */,
   topic: /* `$STRING` */,
 })
@@ -354,11 +365,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$presentation = $client->presentation();
+$presentation->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $presentation->dataGet() now returns the loaded presentation data
+// $presentation->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

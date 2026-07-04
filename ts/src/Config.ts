@@ -203,7 +203,8 @@ class Config {
                     "name": "id",
                     "orig": "presentation_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

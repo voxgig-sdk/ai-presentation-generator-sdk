@@ -9,9 +9,12 @@ The TypeScript SDK for the AiPresentationGenerator API — a type-safe, entity-o
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/ai-presentation-generator
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AiPresentationGeneratorSDK } from 'ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
 
 const client = new AiPresentationGeneratorSDK({
-  apikey: process.env.AI-PRESENTATION-GENERATOR_APIKEY,
+  apikey: process.env.AI_PRESENTATION_GENERATOR_APIKEY,
 })
 ```
 
 ### 3. Load a presentation
 
 ```ts
-const result = await client.Presentation().load({ id: 'example_id' })
+const result = await client.presentation.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -41,7 +44,7 @@ if (result.ok) {
 
 ```ts
 // Create
-const created = await client.Presentation().create({
+const created = await client.presentation.create({
   name: 'Example',
 })
 
@@ -89,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AiPresentationGeneratorSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.presentation.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -106,7 +109,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.presentation
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -143,8 +146,8 @@ const client = new AiPresentationGeneratorSDK({
 Create a `.env.local` file at the project root:
 
 ```
-AI-PRESENTATION-GENERATOR_TEST_LIVE=TRUE
-AI-PRESENTATION-GENERATOR_APIKEY=<your-key>
+AI_PRESENTATION_GENERATOR_TEST_LIVE=TRUE
+AI_PRESENTATION_GENERATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -290,7 +293,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.Presentation()`
+Create an instance: `const presentation = client.presentation`
 
 #### Operations
 
@@ -322,13 +325,13 @@ Create an instance: `const presentation = client.Presentation()`
 #### Example: Load
 
 ```ts
-const presentation = await client.Presentation().load({ id: 'presentation_id' })
+const presentation = await client.presentation.load({ id: 'presentation_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const presentation = await client.Presentation().create({
+const presentation = await client.presentation.create({
   content: /* `$STRING` */,
   topic: /* `$STRING` */,
 })
@@ -392,7 +395,7 @@ ai-presentation-generator/
 Import the SDK from the package root:
 
 ```ts
-import { AiPresentationGeneratorSDK } from 'ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
 ```
 
 ### Entity state
@@ -402,11 +405,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const presentation = client.presentation
+await presentation.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// presentation.data() now returns the loaded presentation data
+// presentation.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

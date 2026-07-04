@@ -10,26 +10,26 @@ This is an unofficial SDK for the AI Presentation Generator public API, generate
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ai-presentation-generator` | `npm install @voxgig-sdk/ai-presentation-generator` |
-| Python | `voxgig-sdk-ai-presentation-generator` | `pip install voxgig-sdk-ai-presentation-generator` |
-| PHP | `voxgig-sdk/ai-presentation-generator` | `composer require voxgig-sdk/ai-presentation-generator` |
-| Golang | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go` | `go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go` |
-| Ruby | `voxgig-sdk-ai-presentation-generator` | `gem install voxgig-sdk-ai-presentation-generator` |
-| Lua | `voxgig-sdk-ai-presentation-generator` | `luarocks install voxgig-sdk-ai-presentation-generator` |
+| TypeScript | `@voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| Python | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| PHP | `voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go` | `go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go@latest` |
+| Ruby | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| Lua | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { AiPresentationGeneratorSDK } from 'ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
 
 const client = new AiPresentationGeneratorSDK({
-  apikey: process.env.AI-PRESENTATION-GENERATOR_APIKEY,
+  apikey: process.env.AI_PRESENTATION_GENERATOR_APIKEY,
 })
 
 // Load presentation data
-const presentation = await client.Presentation().load({})
+const presentation = await client.presentation.load({})
 console.log(presentation.data)
 ```
 
@@ -71,7 +71,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Presentation** |  | `/presentations` |
+| **Presentation** | The Presentation entity (create, load). | `/presentations` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -85,12 +85,12 @@ import os
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
 
 client = AiPresentationGeneratorSDK({
-    "apikey": os.environ.get("AI-PRESENTATION-GENERATOR_APIKEY"),
+    "apikey": os.environ.get("AI_PRESENTATION_GENERATOR_APIKEY"),
 })
 
 
 # Load a specific presentation
-presentation, err = client.Presentation().load({"id": "example_id"})
+presentation = client.presentation.load({"id": "example_id"})
 print(presentation)
 ```
 
@@ -101,12 +101,12 @@ print(presentation)
 require_once 'aipresentationgenerator_sdk.php';
 
 $client = new AiPresentationGeneratorSDK([
-    "apikey" => getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+    "apikey" => getenv("AI_PRESENTATION_GENERATOR_APIKEY"),
 ]);
 
 
 // Load a specific presentation
-[$presentation, $err] = $client->Presentation()->load(["id" => "example_id"]);
+$presentation = $client->presentation()->load(["id" => "example_id"]);
 print_r($presentation);
 ```
 
@@ -116,7 +116,7 @@ print_r($presentation);
 import sdk "github.com/voxgig-sdk/ai-presentation-generator-sdk/go"
 
 client := sdk.NewAiPresentationGeneratorSDK(map[string]any{
-    "apikey": os.Getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+    "apikey": os.Getenv("AI_PRESENTATION_GENERATOR_APIKEY"),
 })
 
 // Load presentation data
@@ -130,12 +130,12 @@ fmt.Println(presentation)
 require_relative "AiPresentationGenerator_sdk"
 
 client = AiPresentationGeneratorSDK.new({
-  "apikey" => ENV["AI-PRESENTATION-GENERATOR_APIKEY"],
+  "apikey" => ENV["AI_PRESENTATION_GENERATOR_APIKEY"],
 })
 
 
 # Load a specific presentation
-presentation, err = client.Presentation().load({ "id" => "example_id" })
+presentation = client.presentation.load({ "id" => "example_id" })
 puts presentation
 ```
 
@@ -145,12 +145,12 @@ puts presentation
 local sdk = require("ai-presentation-generator_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+  apikey = os.getenv("AI_PRESENTATION_GENERATOR_APIKEY"),
 })
 
 
 -- Load a specific presentation
-local presentation, err = client:Presentation():load({ id = "example_id" })
+local presentation, err = client:presentation():load({ id = "example_id" })
 print(presentation)
 ```
 
@@ -163,7 +163,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AiPresentationGeneratorSDK.test()
-const result = await client.Presentation().load({ id: 'test01' })
+const result = await client.presentation.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -171,14 +171,14 @@ const result = await client.Presentation().load({ id: 'test01' })
 
 ```python
 client = AiPresentationGeneratorSDK.test()
-result, err = client.Presentation().load({"id": "test01"})
+result = client.presentation.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = AiPresentationGeneratorSDK::test();
-[$result, $err] = $client->Presentation()->load(["id" => "test01"]);
+$result = $client->presentation()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -194,14 +194,14 @@ result, err := client.Presentation(nil).Load(
 
 ```ruby
 client = AiPresentationGeneratorSDK.test
-result, err = client.Presentation().load({ "id" => "test01" })
+result = client.presentation.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Presentation():load({ id = "test01" })
+local result, err = client:presentation():load({ id = "test01" })
 ```
 
 ## How it works
@@ -254,7 +254,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -263,7 +263,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -281,7 +281,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

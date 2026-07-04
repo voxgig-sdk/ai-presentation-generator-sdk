@@ -173,6 +173,7 @@ func MakeConfig() map[string]any {
 											"orig": "presentation_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},

@@ -36,8 +36,7 @@ class PresentationEntityTest < Minitest::Test
     presentation_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.presentation"), "presentation_ref01"))
 
-    presentation_ref01_data_result, err = presentation_ref01_ent.create(presentation_ref01_data, nil)
-    assert_nil err
+    presentation_ref01_data_result = presentation_ref01_ent.create(presentation_ref01_data, nil)
     presentation_ref01_data = Helpers.to_map(presentation_ref01_data_result)
     assert !presentation_ref01_data.nil?
     assert !presentation_ref01_data["id"].nil?
@@ -46,8 +45,7 @@ class PresentationEntityTest < Minitest::Test
     presentation_ref01_match_dt0 = {
       "id" => presentation_ref01_data["id"],
     }
-    presentation_ref01_data_dt0_loaded, err = presentation_ref01_ent.load(presentation_ref01_match_dt0, nil)
-    assert_nil err
+    presentation_ref01_data_dt0_loaded = presentation_ref01_ent.load(presentation_ref01_match_dt0, nil)
     presentation_ref01_data_dt0_load_result = Helpers.to_map(presentation_ref01_data_dt0_loaded)
     assert !presentation_ref01_data_dt0_load_result.nil?
     assert_equal presentation_ref01_data_dt0_load_result["id"], presentation_ref01_data["id"]

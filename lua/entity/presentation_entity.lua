@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PresentationLoadMatch
+---@param ctrl? table
+---@return Presentation
+---@return string? err
 function PresentationEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -106,6 +110,10 @@ end
 
 
 
+---@param reqdata PresentationCreateData
+---@param ctrl? table
+---@return Presentation
+---@return string? err
 function PresentationEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

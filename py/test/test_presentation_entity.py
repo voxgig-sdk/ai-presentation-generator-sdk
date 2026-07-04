@@ -44,9 +44,7 @@ class TestPresentationEntity:
         presentation_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.presentation"), "presentation_ref01"))
 
-        presentation_ref01_data_result, err = presentation_ref01_ent.create(presentation_ref01_data, None)
-        assert err is None
-        presentation_ref01_data = helpers.to_map(presentation_ref01_data_result)
+        presentation_ref01_data = helpers.to_map(presentation_ref01_ent.create(presentation_ref01_data, None))
         assert presentation_ref01_data is not None
         assert presentation_ref01_data["id"] is not None
 
@@ -54,8 +52,7 @@ class TestPresentationEntity:
         presentation_ref01_match_dt0 = {
             "id": presentation_ref01_data["id"],
         }
-        presentation_ref01_data_dt0_loaded, err = presentation_ref01_ent.load(presentation_ref01_match_dt0, None)
-        assert err is None
+        presentation_ref01_data_dt0_loaded = presentation_ref01_ent.load(presentation_ref01_match_dt0, None)
         presentation_ref01_data_dt0_load_result = helpers.to_map(presentation_ref01_data_dt0_loaded)
         assert presentation_ref01_data_dt0_load_result is not None
         assert presentation_ref01_data_dt0_load_result["id"] == presentation_ref01_data["id"]

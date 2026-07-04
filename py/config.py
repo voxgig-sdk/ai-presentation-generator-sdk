@@ -174,6 +174,7 @@ def make_config():
                       "orig": "presentation_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

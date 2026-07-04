@@ -245,6 +245,9 @@ func (sdk *AiPresentationGeneratorSDK) Direct(fetchargs map[string]any) (map[str
 }
 
 
+// Presentation returns a Presentation entity bound to this client.
+// Idiomatic usage: client.Presentation(nil).List(nil, nil) or
+// client.Presentation(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AiPresentationGeneratorSDK) Presentation(data map[string]any) AiPresentationGeneratorEntity {
 	return NewPresentationEntityFunc(sdk, data)
 }

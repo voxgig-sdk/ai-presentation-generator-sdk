@@ -43,8 +43,7 @@ class PresentationEntityTest extends TestCase
         $presentation_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.presentation"), "presentation_ref01"));
 
-        [$presentation_ref01_data_result, $err] = $presentation_ref01_ent->create($presentation_ref01_data, null);
-        $this->assertNull($err);
+        $presentation_ref01_data_result = $presentation_ref01_ent->create($presentation_ref01_data, null);
         $presentation_ref01_data = Helpers::to_map($presentation_ref01_data_result);
         $this->assertNotNull($presentation_ref01_data);
         $this->assertNotNull($presentation_ref01_data["id"]);
@@ -53,8 +52,7 @@ class PresentationEntityTest extends TestCase
         $presentation_ref01_match_dt0 = [
             "id" => $presentation_ref01_data["id"],
         ];
-        [$presentation_ref01_data_dt0_loaded, $err] = $presentation_ref01_ent->load($presentation_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $presentation_ref01_data_dt0_loaded = $presentation_ref01_ent->load($presentation_ref01_match_dt0, null);
         $presentation_ref01_data_dt0_load_result = Helpers::to_map($presentation_ref01_data_dt0_loaded);
         $this->assertNotNull($presentation_ref01_data_dt0_load_result);
         $this->assertEquals($presentation_ref01_data_dt0_load_result["id"], $presentation_ref01_data["id"]);

@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:presentation():list() / client:presentation():load({ id = ... })
+function AiPresentationGeneratorSDK:presentation(data)
+  local EntityMod = require("entity.presentation_entity")
+  if data == nil then
+    if self._presentation == nil then
+      self._presentation = EntityMod.new(self, nil)
+    end
+    return self._presentation
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:presentation() instead.
 function AiPresentationGeneratorSDK:Presentation(data)
   local EntityMod = require("entity.presentation_entity")
   return EntityMod.new(self, data)

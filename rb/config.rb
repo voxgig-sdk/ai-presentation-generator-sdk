@@ -174,6 +174,7 @@ module AiPresentationGeneratorConfig
                         "orig" => "presentation_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

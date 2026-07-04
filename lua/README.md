@@ -9,12 +9,9 @@ The Lua SDK for the AiPresentationGenerator API — an entity-oriented client us
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-ai-presentation-generator
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("ai-presentation-generator_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("AI-PRESENTATION-GENERATOR_APIKEY"),
+  apikey = os.getenv("AI_PRESENTATION_GENERATOR_APIKEY"),
 })
 ```
 
 ### 3. Load a presentation
 
 ```lua
-local result, err = client:Presentation():load({ id = "example_id" })
+local result, err = client:presentation():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -48,7 +45,7 @@ print(result)
 
 ```lua
 -- Create
-local created, _ = client:Presentation():create({ name = "Example" })
+local created, _ = client:presentation():create({ name = "Example" })
 
 ```
 
@@ -95,7 +92,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:AiPresentationGenerator():load({ id = "test01" })
+local result, err = client:presentation():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -128,8 +125,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-AI-PRESENTATION-GENERATOR_TEST_LIVE=TRUE
-AI-PRESENTATION-GENERATOR_APIKEY=<your-key>
+AI_PRESENTATION_GENERATOR_TEST_LIVE=TRUE
+AI_PRESENTATION_GENERATOR_APIKEY=<your-key>
 ```
 
 Then run:
@@ -243,7 +240,7 @@ API path: `/presentations`
 
 ### Presentation
 
-Create an instance: `const presentation = client.Presentation()`
+Create an instance: `const presentation = client.presentation`
 
 #### Operations
 
@@ -275,13 +272,13 @@ Create an instance: `const presentation = client.Presentation()`
 #### Example: Load
 
 ```ts
-const presentation = await client.Presentation().load({ id: 'presentation_id' })
+const presentation = await client.presentation.load({ id: 'presentation_id' })
 ```
 
 #### Example: Create
 
 ```ts
-const presentation = await client.Presentation().create({
+const presentation = await client.presentation.create({
   content: /* `$STRING` */,
   topic: /* `$STRING` */,
 })
@@ -359,11 +356,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local presentation = client:presentation()
+presentation:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- presentation:data_get() now returns the loaded presentation data
+-- presentation:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

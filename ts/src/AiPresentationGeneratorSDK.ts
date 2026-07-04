@@ -2,6 +2,8 @@
 
 import { PresentationEntity } from './entity/PresentationEntity'
 
+export type * from './AiPresentationGeneratorTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class AiPresentationGeneratorSDK {
 
 
 
+  _presentation?: PresentationEntity
+
+  // Idiomatic facade: `client.presentation.list()` / `client.presentation.load({ id })`.
+  get presentation(): PresentationEntity {
+    return (this._presentation ??= new PresentationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.presentation` instead. */
   Presentation(data?: any) {
     const self = this
     return new PresentationEntity(self,data)
