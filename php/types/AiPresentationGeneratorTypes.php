@@ -38,11 +38,11 @@ class PresentationLoadMatch
     public string $id;
 }
 
-/** Match filter for Presentation#create (any subset of Presentation fields). */
+/** Request payload for Presentation#create. */
 class PresentationCreateData
 {
     public ?string $color_scheme = null;
-    public ?string $content = null;
+    public string $content;
     public ?string $created_at = null;
     public ?string $download_url = null;
     public ?string $expires_at = null;
@@ -55,6 +55,6 @@ class PresentationCreateData
     public ?int $slide = null;
     public ?string $status = null;
     public ?string $theme = null;
-    public ?string $topic = null;
+    public string $topic;
 }
 

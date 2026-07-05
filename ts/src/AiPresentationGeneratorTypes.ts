@@ -27,5 +27,21 @@ export interface PresentationLoadMatch {
   id: string
 }
 
-export type PresentationCreateData = Partial<Presentation>
+export interface PresentationCreateData {
+  color_scheme?: string
+  content: string
+  created_at?: string
+  download_url?: string
+  expires_at?: string
+  format?: string
+  id?: string
+  include_chart?: boolean
+  language?: string
+  layout?: string
+  preview_url?: string
+  slide?: number
+  status?: string
+  theme?: string
+  topic: string
+}
 

@@ -8,7 +8,7 @@ Complete API reference for the AiPresentationGenerator PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/ai-presentation-generator_sdk.php';
+require_once __DIR__ . '/aipresentationgenerator_sdk.php';
 
 $client = new AiPresentationGeneratorSDK($options);
 ```
@@ -46,11 +46,11 @@ $client = AiPresentationGeneratorSDK::test();
 
 Create a new `PresentationEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): AiPresentationGeneratorUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,21 +93,21 @@ $presentation = $client->Presentation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `include_chart` | ``$BOOLEAN`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `preview_url` | ``$STRING`` | No |  |
-| `slide` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `theme` | ``$STRING`` | No |  |
-| `topic` | ``$STRING`` | Yes |  |
+| `color_scheme` | `string` | No |  |
+| `content` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `format` | `string` | No |  |
+| `id` | `string` | No |  |
+| `include_chart` | `bool` | No |  |
+| `language` | `string` | No |  |
+| `layout` | `string` | No |  |
+| `preview_url` | `string` | No |  |
+| `slide` | `int` | No |  |
+| `status` | `string` | No |  |
+| `theme` | `string` | No |  |
+| `topic` | `string` | Yes |  |
 
 ### Operations
 
@@ -117,8 +117,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Presentation()->create([
-  "content" => /* `$STRING` */,
-  "topic" => /* `$STRING` */,
+  "content" => null, // string
+  "topic" => null, // string
 ]);
 ```
 
@@ -132,19 +132,19 @@ $result = $client->Presentation()->load(["id" => "presentation_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -153,7 +153,7 @@ Set the entity match criteria.
 Create a new `PresentationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

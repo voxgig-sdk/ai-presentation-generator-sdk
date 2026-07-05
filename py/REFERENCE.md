@@ -8,7 +8,7 @@ Complete API reference for the AiPresentationGenerator Python SDK.
 ### Constructor
 
 ```python
-from ai-presentation-generator_sdk import AiPresentationGeneratorSDK
+from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
 
 client = AiPresentationGeneratorSDK(options)
 ```
@@ -88,21 +88,21 @@ presentation = client.Presentation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `include_chart` | ``$BOOLEAN`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `preview_url` | ``$STRING`` | No |  |
-| `slide` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `theme` | ``$STRING`` | No |  |
-| `topic` | ``$STRING`` | Yes |  |
+| `color_scheme` | `str` | No |  |
+| `content` | `str` | Yes |  |
+| `created_at` | `str` | No |  |
+| `download_url` | `str` | No |  |
+| `expires_at` | `str` | No |  |
+| `format` | `str` | No |  |
+| `id` | `str` | No |  |
+| `include_chart` | `bool` | No |  |
+| `language` | `str` | No |  |
+| `layout` | `str` | No |  |
+| `preview_url` | `str` | No |  |
+| `slide` | `int` | No |  |
+| `status` | `str` | No |  |
+| `theme` | `str` | No |  |
+| `topic` | `str` | Yes |  |
 
 ### Operations
 
@@ -112,8 +112,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Presentation().create({
-    "content": ...,  # `$STRING`
-    "topic": ...,  # `$STRING`
+    "content": "example",  # str
+    "topic": "example",  # str
 })
 ```
 

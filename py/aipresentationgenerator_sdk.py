@@ -221,7 +221,7 @@ class AiPresentationGeneratorSDK:
 
 
     def Presentation(self, data=None) -> "PresentationEntity":
-        """Entity factory: client.Presentation().list({}) / client.Presentation().load({"id": ...})."""
+        """Entity factory: client.Presentation().list() / client.Presentation().load({"id": ...})."""
         from entity.presentation_entity import PresentationEntity
         return PresentationEntity(self, data)
 

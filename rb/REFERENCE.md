@@ -8,7 +8,7 @@ Complete API reference for the AiPresentationGenerator Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'ai-presentation-generator_sdk'
+require_relative 'AiPresentationGenerator_sdk'
 
 client = AiPresentationGeneratorSDK.new(options)
 ```
@@ -94,21 +94,21 @@ presentation = client.Presentation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `include_chart` | ``$BOOLEAN`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `preview_url` | ``$STRING`` | No |  |
-| `slide` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `theme` | ``$STRING`` | No |  |
-| `topic` | ``$STRING`` | Yes |  |
+| `color_scheme` | `String` | No |  |
+| `content` | `String` | Yes |  |
+| `created_at` | `String` | No |  |
+| `download_url` | `String` | No |  |
+| `expires_at` | `String` | No |  |
+| `format` | `String` | No |  |
+| `id` | `String` | No |  |
+| `include_chart` | `Boolean` | No |  |
+| `language` | `String` | No |  |
+| `layout` | `String` | No |  |
+| `preview_url` | `String` | No |  |
+| `slide` | `Integer` | No |  |
+| `status` | `String` | No |  |
+| `theme` | `String` | No |  |
+| `topic` | `String` | Yes |  |
 
 ### Operations
 
@@ -118,8 +118,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Presentation.create({
-  "content" => # `$STRING`,
-  "topic" => # `$STRING`,
+  "content" => "example", # String
+  "topic" => "example", # String
 })
 ```
 

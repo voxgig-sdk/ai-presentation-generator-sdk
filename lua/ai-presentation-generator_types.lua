@@ -27,6 +27,21 @@
 ---@field id string
 
 ---@class PresentationCreateData
+---@field color_scheme? string
+---@field content string
+---@field created_at? string
+---@field download_url? string
+---@field expires_at? string
+---@field format? string
+---@field id? string
+---@field include_chart? boolean
+---@field language? string
+---@field layout? string
+---@field preview_url? string
+---@field slide? number
+---@field status? string
+---@field theme? string
+---@field topic string
 
 local M = {}
 

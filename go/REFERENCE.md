@@ -98,21 +98,21 @@ presentation := client.Presentation(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | Yes |  |
-| `created_at` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `expires_at` | ``$STRING`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `include_chart` | ``$BOOLEAN`` | No |  |
-| `language` | ``$STRING`` | No |  |
-| `layout` | ``$STRING`` | No |  |
-| `preview_url` | ``$STRING`` | No |  |
-| `slide` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `theme` | ``$STRING`` | No |  |
-| `topic` | ``$STRING`` | Yes |  |
+| `color_scheme` | `string` | No |  |
+| `content` | `string` | Yes |  |
+| `created_at` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `expires_at` | `string` | No |  |
+| `format` | `string` | No |  |
+| `id` | `string` | No |  |
+| `include_chart` | `bool` | No |  |
+| `language` | `string` | No |  |
+| `layout` | `string` | No |  |
+| `preview_url` | `string` | No |  |
+| `slide` | `int` | No |  |
+| `status` | `string` | No |  |
+| `theme` | `string` | No |  |
+| `topic` | `string` | Yes |  |
 
 ### Operations
 
@@ -122,8 +122,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Presentation(nil).Create(map[string]any{
-    "content": /* `$STRING` */,
-    "topic": /* `$STRING` */,
+    "content": /* string */,
+    "topic": /* string */,
 }, nil)
 ```
 

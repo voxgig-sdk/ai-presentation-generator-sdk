@@ -41,9 +41,13 @@ class PresentationLoadMatch(TypedDict):
     id: str
 
 
-class PresentationCreateData(TypedDict, total=False):
-    color_scheme: str
+class PresentationCreateDataRequired(TypedDict):
     content: str
+    topic: str
+
+
+class PresentationCreateData(PresentationCreateDataRequired, total=False):
+    color_scheme: str
     created_at: str
     download_url: str
     expires_at: str
@@ -56,4 +60,3 @@ class PresentationCreateData(TypedDict, total=False):
     slide: int
     status: str
     theme: str
-    topic: str

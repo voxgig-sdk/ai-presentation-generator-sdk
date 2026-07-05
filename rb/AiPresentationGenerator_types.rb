@@ -82,13 +82,13 @@ PresentationLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Presentation#create (any subset of Presentation fields).
+# Request payload for Presentation#create.
 #
 # @!attribute [rw] color_scheme
 #   @return [String, nil]
 #
 # @!attribute [rw] content
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
@@ -127,7 +127,7 @@ PresentationLoadMatch = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] topic
-#   @return [String, nil]
+#   @return [String]
 PresentationCreateData = Struct.new(
   :color_scheme,
   :content,

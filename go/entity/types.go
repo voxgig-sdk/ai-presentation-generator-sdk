@@ -32,11 +32,10 @@ type PresentationLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// PresentationCreateData mirrors the presentation fields as an all-optional match
-// filter (Go analog of Partial<Presentation>).
+// PresentationCreateData is the typed request payload for Presentation.CreateTyped.
 type PresentationCreateData struct {
 	ColorScheme *string `json:"color_scheme,omitempty"`
-	Content *string `json:"content,omitempty"`
+	Content string `json:"content"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	DownloadUrl *string `json:"download_url,omitempty"`
 	ExpiresAt *string `json:"expires_at,omitempty"`
@@ -49,7 +48,7 @@ type PresentationCreateData struct {
 	Slide *int `json:"slide,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Theme *string `json:"theme,omitempty"`
-	Topic *string `json:"topic,omitempty"`
+	Topic string `json:"topic"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
