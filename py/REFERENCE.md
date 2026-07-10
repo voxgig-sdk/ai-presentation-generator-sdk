@@ -112,8 +112,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Presentation().create({
-    "content": "example",  # str
-    "topic": "example",  # str
+    "content": "example_content",  # str
+    "topic": "example_topic",  # str
 })
 ```
 

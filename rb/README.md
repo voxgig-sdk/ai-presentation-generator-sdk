@@ -48,7 +48,7 @@ end
 
 ```ruby
 # create returns the bare created Presentation record.
-created = client.Presentation.create({ "content" => "example", "topic" => "example" })
+created = client.Presentation.create({ "content" => "example_content", "topic" => "example_topic" })
 
 ```
 
@@ -317,8 +317,8 @@ presentation = client.Presentation.load({ "id" => "presentation_id" })
 
 ```ruby
 presentation = client.Presentation.create({
-  "content" => "example", # String
-  "topic" => "example", # String
+  "content" => "example_content", # String
+  "topic" => "example_topic", # String
 })
 ```
 

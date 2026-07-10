@@ -92,6 +92,7 @@ same parameters as `Direct()`.
 
 ```go
 presentation := client.Presentation(nil)
+fmt.Println(presentation.GetName()) // "presentation"
 ```
 
 ### Fields
@@ -116,23 +117,31 @@ presentation := client.Presentation(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Presentation(nil).Create(map[string]any{
-    "content": /* string */,
-    "topic": /* string */,
-}, nil)
-```
-
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
 Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Presentation(nil).Load(map[string]any{"id": "presentation_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Presentation(nil).Create(map[string]any{
+    "content": "example_content",
+    "topic": "example_topic",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

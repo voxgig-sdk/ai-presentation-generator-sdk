@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.pi.inc/v1',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

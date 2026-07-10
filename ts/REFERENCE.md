@@ -141,8 +141,8 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Presentation().create({
-  content: /* string */,
-  topic: /* string */,
+  content: 'example_content',
+  topic: 'example_topic',
 })
 ```
 

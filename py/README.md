@@ -55,7 +55,7 @@ except Exception as err:
 
 ```python
 # Create — returns the bare created record (a dict)
-created = client.Presentation().create({"content": "example", "topic": "example"})
+created = client.Presentation().create({"content": "example_content", "topic": "example_topic"})
 
 ```
 
@@ -320,8 +320,8 @@ presentation = client.Presentation().load({"id": "presentation_id"})
 
 ```python
 presentation = client.Presentation().create({
-    "content": "example",  # str
-    "topic": "example",  # str
+    "content": "example_content",  # str
+    "topic": "example_topic",  # str
 })
 ```
 

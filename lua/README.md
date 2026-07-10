@@ -47,7 +47,7 @@ print(presentation)
 
 ```lua
 -- Create
-local created, err = client:Presentation():create({ content = "example", topic = "example" })
+local created, err = client:Presentation():create({ content = "example_content", topic = "example_topic" })
 if err then error(err) end
 
 ```
@@ -305,8 +305,8 @@ local presentation, err = client:Presentation():load({ id = "presentation_id" })
 
 ```lua
 local presentation, err = client:Presentation():create({
-  content = nil, -- string
-  topic = nil, -- string
+  content = "example_content", -- string
+  topic = "example_topic", -- string
 })
 ```
 

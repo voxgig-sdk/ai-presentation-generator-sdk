@@ -368,8 +368,8 @@ const presentation = await client.Presentation().load({ id: 'presentation_id' })
 
 ```ts
 const presentation = await client.Presentation().create({
-  content: /* string */,
-  topic: /* string */,
+  content: 'example_content',
+  topic: 'example_topic',
 })
 ```
 

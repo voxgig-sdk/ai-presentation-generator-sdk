@@ -118,8 +118,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Presentation.create({
-  "content" => "example", # String
-  "topic" => "example", # String
+  "content" => "example_content", # String
+  "topic" => "example_topic", # String
 })
 ```
 

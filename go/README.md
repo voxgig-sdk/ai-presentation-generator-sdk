@@ -54,14 +54,14 @@ func main() {
     })
 
     // Load a single presentation — the value is the loaded record.
-    presentation, err := client.Presentation(nil).Load(map[string]any{"id": "example"}, nil)
+    presentation, err := client.Presentation(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(presentation)
 
     // Create a presentation.
-    created, err := client.Presentation(nil).Create(map[string]any{"content": "example", "topic": "example"}, nil)
+    created, err := client.Presentation(nil).Create(map[string]any{"content": "example_content", "topic": "example_topic"}, nil)
     if err != nil {
         panic(err)
     }
@@ -304,8 +304,8 @@ Create an instance: `presentation := client.Presentation(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 
 #### Fields
 
@@ -341,9 +341,13 @@ fmt.Println(presentation) // the loaded record
 
 ```go
 result, err := client.Presentation(nil).Create(map[string]any{
-    "content": /* string */,
-    "topic": /* string */,
+    "content": "example_content",
+    "topic": "example_topic",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
