@@ -33,7 +33,7 @@ class PresentationEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class PresentationEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.presentation"), "presentation_ref01"));
 
         $presentation_ref01_data_result = $presentation_ref01_ent->create($presentation_ref01_data, null);
-        $presentation_ref01_data = Helpers::to_map($presentation_ref01_data_result);
+        $presentation_ref01_data = Helpers::to_map(is_object($presentation_ref01_data_result) && method_exists($presentation_ref01_data_result, 'data_get') ? $presentation_ref01_data_result->data_get() : $presentation_ref01_data_result);
         $this->assertNotNull($presentation_ref01_data);
         $this->assertNotNull($presentation_ref01_data["id"]);
 
@@ -53,7 +53,7 @@ class PresentationEntityTest extends TestCase
             "id" => $presentation_ref01_data["id"],
         ];
         $presentation_ref01_data_dt0_loaded = $presentation_ref01_ent->load($presentation_ref01_match_dt0, null);
-        $presentation_ref01_data_dt0_load_result = Helpers::to_map($presentation_ref01_data_dt0_loaded);
+        $presentation_ref01_data_dt0_load_result = Helpers::to_map(is_object($presentation_ref01_data_dt0_loaded) && method_exists($presentation_ref01_data_dt0_loaded, 'data_get') ? $presentation_ref01_data_dt0_loaded->data_get() : $presentation_ref01_data_dt0_loaded);
         $this->assertNotNull($presentation_ref01_data_dt0_load_result);
         $this->assertEquals($presentation_ref01_data_dt0_load_result["id"], $presentation_ref01_data["id"]);
 
@@ -82,39 +82,39 @@ function presentation_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID");
+    $entid_env_raw = getenv("AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID" => $idmap,
-        "AIPRESENTATIONGENERATOR_TEST_LIVE" => "FALSE",
-        "AIPRESENTATIONGENERATOR_TEST_EXPLAIN" => "FALSE",
-        "AIPRESENTATIONGENERATOR_APIKEY" => "NONE",
+        "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID" => $idmap,
+        "AI_PRESENTATION_GENERATOR_TEST_LIVE" => "FALSE",
+        "AI_PRESENTATION_GENERATOR_TEST_EXPLAIN" => "FALSE",
+        "AI_PRESENTATION_GENERATOR_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"]);
+        $env["AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["AIPRESENTATIONGENERATOR_TEST_LIVE"] === "TRUE") {
+    if ($env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AIPRESENTATIONGENERATOR_APIKEY"],
+                "apikey" => $env["AI_PRESENTATION_GENERATOR_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new AiPresentationGeneratorSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["AIPRESENTATIONGENERATOR_TEST_LIVE"] === "TRUE";
+    $live = $env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["AIPRESENTATIONGENERATOR_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["AI_PRESENTATION_GENERATOR_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

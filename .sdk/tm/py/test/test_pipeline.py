@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AiPresentationGeneratorSDK
-from core.error import AiPresentationGeneratorError
-from core.result import AiPresentationGeneratorResult
-from core.response import AiPresentationGeneratorResponse
-from core.spec import AiPresentationGeneratorSpec
-from feature.base_feature import AiPresentationGeneratorBaseFeature
+from projectname_sdk.core.error import AiPresentationGeneratorError
+from projectname_sdk.core.result import AiPresentationGeneratorResult
+from projectname_sdk.core.response import AiPresentationGeneratorResponse
+from projectname_sdk.core.spec import AiPresentationGeneratorSpec
+from projectname_sdk.feature.base_feature import AiPresentationGeneratorBaseFeature
 
 
 def _client():

@@ -6,7 +6,7 @@ main: kit: entity: presentation: {
 
   fields: [
     {
-      name: "color_scheme"
+      name: "colorScheme"
       req: false
       type: "`$STRING`"
     }
@@ -16,17 +16,17 @@ main: kit: entity: presentation: {
       type: "`$STRING`"
     }
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "download_url"
+      name: "downloadUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "expires_at"
+      name: "expiresAt"
       req: false
       type: "`$STRING`"
     }
@@ -41,7 +41,7 @@ main: kit: entity: presentation: {
       type: "`$STRING`"
     }
     {
-      name: "include_chart"
+      name: "includeCharts"
       req: false
       type: "`$BOOLEAN`"
     }
@@ -56,12 +56,12 @@ main: kit: entity: presentation: {
       type: "`$STRING`"
     }
     {
-      name: "preview_url"
+      name: "previewUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "slide"
+      name: "slides"
       req: false
       type: "`$INTEGER`"
     }

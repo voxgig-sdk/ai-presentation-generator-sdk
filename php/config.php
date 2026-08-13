@@ -35,7 +35,7 @@ class AiPresentationGeneratorConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'color_scheme',
+              'name' => 'colorScheme',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -49,21 +49,21 @@ class AiPresentationGeneratorConfig
             ],
             [
               'active' => true,
-              'name' => 'created_at',
+              'name' => 'createdAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'download_url',
+              'name' => 'downloadUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
             ],
             [
               'active' => true,
-              'name' => 'expires_at',
+              'name' => 'expiresAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 4,
@@ -84,7 +84,7 @@ class AiPresentationGeneratorConfig
             ],
             [
               'active' => true,
-              'name' => 'include_chart',
+              'name' => 'includeCharts',
               'req' => false,
               'type' => '`$BOOLEAN`',
               'index$' => 7,
@@ -105,14 +105,14 @@ class AiPresentationGeneratorConfig
             ],
             [
               'active' => true,
-              'name' => 'preview_url',
+              'name' => 'previewUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 10,
             ],
             [
               'active' => true,
-              'name' => 'slide',
+              'name' => 'slides',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 11,
@@ -148,6 +148,7 @@ class AiPresentationGeneratorConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/presentations',
                   'parts' => [
@@ -183,6 +184,7 @@ class AiPresentationGeneratorConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/presentations/{presentationId}',
                   'parts' => [

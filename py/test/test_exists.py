@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# AiPresentationGenerator SDK exists test
 
 import pytest
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK

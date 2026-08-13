@@ -23,8 +23,8 @@ module AiPresentationGeneratorTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("AIPRESENTATIONGENERATOR_TEST_LIVE")
-    override = getenv("AIPRESENTATIONGENERATOR_TEST_OVERRIDE")
+    live = getenv("AI_PRESENTATION_GENERATOR_TEST_LIVE")
+    override = getenv("AI_PRESENTATION_GENERATOR_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module AiPresentationGeneratorTestRunner
       end
     end
 
-    explain = getenv("AIPRESENTATIONGENERATOR_TEST_EXPLAIN")
-    m["AIPRESENTATIONGENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("AI_PRESENTATION_GENERATOR_TEST_EXPLAIN")
+    m["AI_PRESENTATION_GENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -43,8 +43,8 @@ class AiPresentationGeneratorTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('AIPRESENTATIONGENERATOR_TEST_LIVE');
-        $override = self::getenv('AIPRESENTATIONGENERATOR_TEST_OVERRIDE');
+        $live = self::getenv('AI_PRESENTATION_GENERATOR_TEST_LIVE');
+        $override = self::getenv('AI_PRESENTATION_GENERATOR_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class AiPresentationGeneratorTestRunner
             }
         }
 
-        $explain = self::getenv('AIPRESENTATIONGENERATOR_TEST_EXPLAIN');
+        $explain = self::getenv('AI_PRESENTATION_GENERATOR_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['AIPRESENTATIONGENERATOR_TEST_EXPLAIN'] = $explain;
+            $m['AI_PRESENTATION_GENERATOR_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

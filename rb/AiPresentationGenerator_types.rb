@@ -10,19 +10,19 @@
 
 # Presentation entity data model.
 #
-# @!attribute [rw] color_scheme
+# @!attribute [rw] colorScheme
 #   @return [String, nil]
 #
 # @!attribute [rw] content
 #   @return [String]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
-# @!attribute [rw] download_url
+# @!attribute [rw] downloadUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] expires_at
+# @!attribute [rw] expiresAt
 #   @return [String, nil]
 #
 # @!attribute [rw] format
@@ -31,7 +31,7 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] include_chart
+# @!attribute [rw] includeCharts
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] language
@@ -40,10 +40,10 @@
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_url
+# @!attribute [rw] previewUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] slide
+# @!attribute [rw] slides
 #   @return [Integer, nil]
 #
 # @!attribute [rw] status
@@ -55,18 +55,18 @@
 # @!attribute [rw] topic
 #   @return [String]
 Presentation = Struct.new(
-  :color_scheme,
+  :colorScheme,
   :content,
-  :created_at,
-  :download_url,
-  :expires_at,
+  :createdAt,
+  :downloadUrl,
+  :expiresAt,
   :format,
   :id,
-  :include_chart,
+  :includeCharts,
   :language,
   :layout,
-  :preview_url,
-  :slide,
+  :previewUrl,
+  :slides,
   :status,
   :theme,
   :topic,
@@ -84,19 +84,19 @@ PresentationLoadMatch = Struct.new(
 
 # Request payload for Presentation#create.
 #
-# @!attribute [rw] color_scheme
+# @!attribute [rw] colorScheme
 #   @return [String, nil]
 #
 # @!attribute [rw] content
 #   @return [String]
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
-# @!attribute [rw] download_url
+# @!attribute [rw] downloadUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] expires_at
+# @!attribute [rw] expiresAt
 #   @return [String, nil]
 #
 # @!attribute [rw] format
@@ -105,7 +105,7 @@ PresentationLoadMatch = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] include_chart
+# @!attribute [rw] includeCharts
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] language
@@ -114,10 +114,10 @@ PresentationLoadMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] preview_url
+# @!attribute [rw] previewUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] slide
+# @!attribute [rw] slides
 #   @return [Integer, nil]
 #
 # @!attribute [rw] status
@@ -129,18 +129,18 @@ PresentationLoadMatch = Struct.new(
 # @!attribute [rw] topic
 #   @return [String]
 PresentationCreateData = Struct.new(
-  :color_scheme,
+  :colorScheme,
   :content,
-  :created_at,
-  :download_url,
-  :expires_at,
+  :createdAt,
+  :downloadUrl,
+  :expiresAt,
   :format,
   :id,
-  :include_chart,
+  :includeCharts,
   :language,
   :layout,
-  :preview_url,
-  :slide,
+  :previewUrl,
+  :slides,
   :status,
   :theme,
   :topic,

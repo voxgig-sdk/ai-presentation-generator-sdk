@@ -36,7 +36,7 @@ client = AiPresentationGeneratorSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Presentation record (raises on error).
+  # load returns the ENTITY — call data_get for the Presentation record (raises on error).
   presentation = client.Presentation.load({ "id" => "example_id" })
   puts presentation
 rescue => err
@@ -47,7 +47,7 @@ end
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Presentation record.
+# create returns the ENTITY — call data_get for the created Presentation record.
 created = client.Presentation.create({ "content" => "example_content", "topic" => "example_topic" })
 
 ```
@@ -130,7 +130,8 @@ client = AiPresentationGeneratorSDK.test({
   "entity" => { "presentation" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 presentation = client.Presentation.load({ "id" => "test01" })
 puts presentation
 ```
@@ -250,18 +251,18 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `color_scheme` |  |
+| `colorScheme` |  |
 | `content` |  |
-| `created_at` |  |
-| `download_url` |  |
-| `expires_at` |  |
+| `createdAt` |  |
+| `downloadUrl` |  |
+| `expiresAt` |  |
 | `format` |  |
 | `id` |  |
-| `include_chart` |  |
+| `includeCharts` |  |
 | `language` |  |
 | `layout` |  |
-| `preview_url` |  |
-| `slide` |  |
+| `previewUrl` |  |
+| `slides` |  |
 | `status` |  |
 | `theme` |  |
 | `topic` |  |
@@ -290,18 +291,18 @@ Create an instance: `presentation = client.Presentation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `color_scheme` | `String` |  |
+| `colorScheme` | `String` |  |
 | `content` | `String` |  |
-| `created_at` | `String` |  |
-| `download_url` | `String` |  |
-| `expires_at` | `String` |  |
+| `createdAt` | `String` |  |
+| `downloadUrl` | `String` |  |
+| `expiresAt` | `String` |  |
 | `format` | `String` |  |
 | `id` | `String` |  |
-| `include_chart` | `Boolean` |  |
+| `includeCharts` | `Boolean` |  |
 | `language` | `String` |  |
 | `layout` | `String` |  |
-| `preview_url` | `String` |  |
-| `slide` | `Integer` |  |
+| `previewUrl` | `String` |  |
+| `slides` | `Integer` |  |
 | `status` | `String` |  |
 | `theme` | `String` |  |
 | `topic` | `String` |  |
@@ -309,7 +310,7 @@ Create an instance: `presentation = client.Presentation`
 #### Example: Load
 
 ```ruby
-# load returns the bare Presentation record (raises on error).
+# load returns the ENTITY — call data_get for the Presentation record (raises on error).
 presentation = client.Presentation.load({ "id" => "presentation_id" })
 ```
 

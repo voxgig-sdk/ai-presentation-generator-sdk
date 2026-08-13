@@ -29,7 +29,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "color_scheme",
+            ["name"] = "colorScheme",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
@@ -43,21 +43,21 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "created_at",
+            ["name"] = "createdAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "download_url",
+            ["name"] = "downloadUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 3,
           },
           {
             ["active"] = true,
-            ["name"] = "expires_at",
+            ["name"] = "expiresAt",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 4,
@@ -78,7 +78,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "include_chart",
+            ["name"] = "includeCharts",
             ["req"] = false,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 7,
@@ -99,14 +99,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "preview_url",
+            ["name"] = "previewUrl",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 10,
           },
           {
             ["active"] = true,
-            ["name"] = "slide",
+            ["name"] = "slides",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 11,
@@ -142,6 +142,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/presentations",
                 ["parts"] = {
@@ -177,6 +178,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presentations/{presentationId}",
                 ["parts"] = {

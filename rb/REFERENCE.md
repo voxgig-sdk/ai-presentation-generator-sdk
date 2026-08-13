@@ -94,18 +94,18 @@ presentation = client.Presentation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | `String` | No |  |
+| `colorScheme` | `String` | No |  |
 | `content` | `String` | Yes |  |
-| `created_at` | `String` | No |  |
-| `download_url` | `String` | No |  |
-| `expires_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
+| `downloadUrl` | `String` | No |  |
+| `expiresAt` | `String` | No |  |
 | `format` | `String` | No |  |
 | `id` | `String` | No |  |
-| `include_chart` | `Boolean` | No |  |
+| `includeCharts` | `Boolean` | No |  |
 | `language` | `String` | No |  |
 | `layout` | `String` | No |  |
-| `preview_url` | `String` | No |  |
-| `slide` | `Integer` | No |  |
+| `previewUrl` | `String` | No |  |
+| `slides` | `Integer` | No |  |
 | `status` | `String` | No |  |
 | `theme` | `String` | No |  |
 | `topic` | `String` | Yes |  |

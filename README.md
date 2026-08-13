@@ -23,7 +23,7 @@ support (`load`, `create`):
 
 ```ts
 const client = new AiPresentationGeneratorSDK()
-const presentation = await client.Presentation().load()
+const presentation = await client.Presentation().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AiPresentationGeneratorSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AiPresentationGeneratorSDK.test({
+  entity: {
+    presentation: {
+      test01: { id: 'test01', content: 'example_content', topic: 'example_topic' },
+    },
+  },
+})
 const presentation = await client.Presentation().load({ id: 'test01' })
-// presentation is a bare Presentation populated with mock data
+// presentation is the Presentation entity, populated with mock data
+// — call presentation.data() for the record itself
 console.log(presentation)
 ```
 
@@ -155,7 +164,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Presentation** | The Presentation entity (create, load). | `/presentations` |
+| **Presentation** | The Presentation entity (create, load). | `/presentations/{presentationId}` |
 
 The operations available across these entities are **load**, **create** — see each entity's
 own list above for exactly which it supports.
@@ -189,7 +198,7 @@ $client = new AiPresentationGeneratorSDK([
 ]);
 
 
-// Load a specific presentation (returns the bare record; throws on error)
+// Load a specific presentation (returns the ENTITY; call data_get() for the record; throws on error)
 $presentation = $client->Presentation()->load(["id" => "example_id"]);
 print_r($presentation);
 ```
@@ -221,7 +230,7 @@ client = AiPresentationGeneratorSDK.new({
 })
 
 
-# Load a specific presentation (returns the bare record; raises on error)
+# Load a specific presentation (returns the ENTITY; call data_get for the record)
 presentation = client.Presentation.load({ "id" => "example_id" })
 puts presentation
 ```
@@ -357,6 +366,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9#](https://www.pi.inc/docs/384227635738616?t=7aefee826938a456421c80cda9fe00c9#)
 

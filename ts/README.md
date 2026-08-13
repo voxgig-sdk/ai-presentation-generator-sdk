@@ -51,7 +51,7 @@ try {
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Presentation
+// Create — returns the created Presentation ENTITY (.data() for the record)
 const created = await client.Presentation().create({
   content: 'example_content',
   topic: 'example_topic',
@@ -134,7 +134,8 @@ Create a mock client for unit testing — no server required:
 const client = AiPresentationGeneratorSDK.test()
 
 const presentation = await client.Presentation().load({ id: 'test01' })
-// presentation is a bare entity populated with mock response data
+// presentation is the entity, populated with mock response data
+// — call presentation.data() for the record itself
 console.log(presentation)
 ```
 
@@ -302,18 +303,18 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `color_scheme` |  |
+| `colorScheme` |  |
 | `content` |  |
-| `created_at` |  |
-| `download_url` |  |
-| `expires_at` |  |
+| `createdAt` |  |
+| `downloadUrl` |  |
+| `expiresAt` |  |
 | `format` |  |
 | `id` |  |
-| `include_chart` |  |
+| `includeCharts` |  |
 | `language` |  |
 | `layout` |  |
-| `preview_url` |  |
-| `slide` |  |
+| `previewUrl` |  |
+| `slides` |  |
 | `status` |  |
 | `theme` |  |
 | `topic` |  |
@@ -342,18 +343,18 @@ Create an instance: `const presentation = client.Presentation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `color_scheme` | `string` |  |
+| `colorScheme` | `string` |  |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
-| `download_url` | `string` |  |
-| `expires_at` | `string` |  |
+| `createdAt` | `string` |  |
+| `downloadUrl` | `string` |  |
+| `expiresAt` | `string` |  |
 | `format` | `string` |  |
 | `id` | `string` |  |
-| `include_chart` | `boolean` |  |
+| `includeCharts` | `boolean` |  |
 | `language` | `string` |  |
 | `layout` | `string` |  |
-| `preview_url` | `string` |  |
-| `slide` | `number` |  |
+| `previewUrl` | `string` |  |
+| `slides` | `number` |  |
 | `status` | `string` |  |
 | `theme` | `string` |  |
 | `topic` | `string` |  |

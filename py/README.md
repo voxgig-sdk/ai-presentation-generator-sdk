@@ -41,7 +41,7 @@ client = AiPresentationGeneratorSDK({
 
 ### 3. Load a presentation
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -54,7 +54,7 @@ except Exception as err:
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
+# Create — returns the ENTITY (call data_get() for the record)
 created = client.Presentation().create({"content": "example_content", "topic": "example_topic"})
 
 ```
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AiPresentationGeneratorSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 presentation = client.Presentation().load({"id": "test01"})
 # presentation contains the mock response record
 ```
@@ -232,7 +233,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -254,18 +255,18 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `color_scheme` |  |
+| `colorScheme` |  |
 | `content` |  |
-| `created_at` |  |
-| `download_url` |  |
-| `expires_at` |  |
+| `createdAt` |  |
+| `downloadUrl` |  |
+| `expiresAt` |  |
 | `format` |  |
 | `id` |  |
-| `include_chart` |  |
+| `includeCharts` |  |
 | `language` |  |
 | `layout` |  |
-| `preview_url` |  |
-| `slide` |  |
+| `previewUrl` |  |
+| `slides` |  |
 | `status` |  |
 | `theme` |  |
 | `topic` |  |
@@ -294,18 +295,18 @@ Create an instance: `presentation = client.Presentation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `color_scheme` | `str` |  |
+| `colorScheme` | `str` |  |
 | `content` | `str` |  |
-| `created_at` | `str` |  |
-| `download_url` | `str` |  |
-| `expires_at` | `str` |  |
+| `createdAt` | `str` |  |
+| `downloadUrl` | `str` |  |
+| `expiresAt` | `str` |  |
 | `format` | `str` |  |
 | `id` | `str` |  |
-| `include_chart` | `bool` |  |
+| `includeCharts` | `bool` |  |
 | `language` | `str` |  |
 | `layout` | `str` |  |
-| `preview_url` | `str` |  |
-| `slide` | `int` |  |
+| `previewUrl` | `str` |  |
+| `slides` | `int` |  |
 | `status` | `str` |  |
 | `theme` | `str` |  |
 | `topic` | `str` |  |

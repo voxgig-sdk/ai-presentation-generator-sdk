@@ -7,18 +7,18 @@
 -- edit by hand.
 
 ---@class Presentation
----@field color_scheme? string
+---@field colorScheme? string
 ---@field content string
----@field created_at? string
----@field download_url? string
----@field expires_at? string
+---@field createdAt? string
+---@field downloadUrl? string
+---@field expiresAt? string
 ---@field format? string
 ---@field id? string
----@field include_chart? boolean
+---@field includeCharts? boolean
 ---@field language? string
 ---@field layout? string
----@field preview_url? string
----@field slide? number
+---@field previewUrl? string
+---@field slides? number
 ---@field status? string
 ---@field theme? string
 ---@field topic string
@@ -27,18 +27,18 @@
 ---@field id string
 
 ---@class PresentationCreateData
----@field color_scheme? string
+---@field colorScheme? string
 ---@field content string
----@field created_at? string
----@field download_url? string
----@field expires_at? string
+---@field createdAt? string
+---@field downloadUrl? string
+---@field expiresAt? string
 ---@field format? string
 ---@field id? string
----@field include_chart? boolean
+---@field includeCharts? boolean
 ---@field language? string
 ---@field layout? string
----@field preview_url? string
----@field slide? number
+---@field previewUrl? string
+---@field slides? number
 ---@field status? string
 ---@field theme? string
 ---@field topic string

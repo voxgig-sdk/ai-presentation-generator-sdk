@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from aipresentationgenerator_sdk.utility.voxgig_struct import voxgig_struct as vs
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
-from core import helpers
+from aipresentationgenerator_sdk.core import helpers
 from test import runner
 
 
@@ -63,16 +63,16 @@ def _presentation_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID": {},
-        "AIPRESENTATIONGENERATOR_TEST_LIVE": "FALSE",
-        "AIPRESENTATIONGENERATOR_APIKEY": "NONE",
+        "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": {},
+        "AI_PRESENTATION_GENERATOR_TEST_LIVE": "FALSE",
+        "AI_PRESENTATION_GENERATOR_APIKEY": "NONE",
     })
 
-    live = env.get("AIPRESENTATIONGENERATOR_TEST_LIVE") == "TRUE"
+    live = env.get("AI_PRESENTATION_GENERATOR_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("AIPRESENTATIONGENERATOR_APIKEY"),
+            "apikey": env.get("AI_PRESENTATION_GENERATOR_APIKEY"),
         }
         client = AiPresentationGeneratorSDK(merged_opts)
         return {

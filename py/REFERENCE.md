@@ -88,18 +88,18 @@ presentation = client.Presentation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | `str` | No |  |
+| `colorScheme` | `str` | No |  |
 | `content` | `str` | Yes |  |
-| `created_at` | `str` | No |  |
-| `download_url` | `str` | No |  |
-| `expires_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
+| `downloadUrl` | `str` | No |  |
+| `expiresAt` | `str` | No |  |
 | `format` | `str` | No |  |
 | `id` | `str` | No |  |
-| `include_chart` | `bool` | No |  |
+| `includeCharts` | `bool` | No |  |
 | `language` | `str` | No |  |
 | `layout` | `str` | No |  |
-| `preview_url` | `str` | No |  |
-| `slide` | `int` | No |  |
+| `previewUrl` | `str` | No |  |
+| `slides` | `int` | No |  |
 | `status` | `str` | No |  |
 | `theme` | `str` | No |  |
 | `topic` | `str` | Yes |  |

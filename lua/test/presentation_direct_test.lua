@@ -68,16 +68,16 @@ function presentation_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"] = {},
-    ["AIPRESENTATIONGENERATOR_TEST_LIVE"] = "FALSE",
-    ["AIPRESENTATIONGENERATOR_APIKEY"] = "NONE",
+    ["AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID"] = {},
+    ["AI_PRESENTATION_GENERATOR_TEST_LIVE"] = "FALSE",
+    ["AI_PRESENTATION_GENERATOR_APIKEY"] = "NONE",
   })
 
-  local live = env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE"
+  local live = env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["AIPRESENTATIONGENERATOR_APIKEY"],
+      apikey = env["AI_PRESENTATION_GENERATOR_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

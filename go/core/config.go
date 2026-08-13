@@ -29,7 +29,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "color_scheme",
+						"name": "colorScheme",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -43,21 +43,21 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "created_at",
+						"name": "createdAt",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "download_url",
+						"name": "downloadUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "expires_at",
+						"name": "expiresAt",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 4,
@@ -78,7 +78,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "include_chart",
+						"name": "includeCharts",
 						"req": false,
 						"type": "`$BOOLEAN`",
 						"index$": 7,
@@ -99,14 +99,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "preview_url",
+						"name": "previewUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 10,
 					},
 					map[string]any{
 						"active": true,
-						"name": "slide",
+						"name": "slides",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 11,
@@ -142,6 +142,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/presentations",
 								"parts": []any{
@@ -155,7 +156,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -177,6 +177,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/presentations/{presentationId}",
 								"parts": []any{
@@ -200,7 +201,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

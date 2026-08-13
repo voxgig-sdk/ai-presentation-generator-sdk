@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AiPresentationGeneratorControl
-from core.error import AiPresentationGeneratorError
-from core.result import AiPresentationGeneratorResult
-from core.spec import AiPresentationGeneratorSpec
+from aipresentationgenerator_sdk.config import make_config
+from aipresentationgenerator_sdk.features import _make_feature
+from aipresentationgenerator_sdk.core.control import AiPresentationGeneratorControl
+from aipresentationgenerator_sdk.core.error import AiPresentationGeneratorError
+from aipresentationgenerator_sdk.core.result import AiPresentationGeneratorResult
+from aipresentationgenerator_sdk.core.spec import AiPresentationGeneratorSpec
 
 
 # True when this SDK was generated with the named feature.

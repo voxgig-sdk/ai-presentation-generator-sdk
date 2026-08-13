@@ -26,8 +26,8 @@ import {
 describe('PresentationEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AIPRESENTATIONGENERATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AIPRESENTATIONGENERATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AI_PRESENTATION_GENERATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AI_PRESENTATION_GENERATOR_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AiPresentationGeneratorSDK.test()
@@ -62,14 +62,14 @@ describe('PresentationEntity', async () => {
     const presentation_ref01_ent = client.Presentation()
     let presentation_ref01_data = setup.data.new.presentation['presentation_ref01']
 
-    presentation_ref01_data = await presentation_ref01_ent.create(presentation_ref01_data)
+    presentation_ref01_data = (await presentation_ref01_ent.create(presentation_ref01_data)).data()
     assert(null != presentation_ref01_data.id)
 
 
     // LOAD
     const presentation_ref01_match_dt0: any = {}
     presentation_ref01_match_dt0.id = presentation_ref01_data.id
-    const presentation_ref01_data_dt0 = await presentation_ref01_ent.load(presentation_ref01_match_dt0)
+    const presentation_ref01_data_dt0 = (await presentation_ref01_ent.load(presentation_ref01_match_dt0)).data()
     assert(presentation_ref01_data_dt0.id === presentation_ref01_data.id)
 
 

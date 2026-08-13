@@ -19,11 +19,15 @@ import {
 describe('PresentationDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AIPRESENTATIONGENERATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AIPRESENTATIONGENERATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AI_PRESENTATION_GENERATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AI_PRESENTATION_GENERATOR_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new AiPresentationGeneratorSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,19 +81,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID': {},
-    'AIPRESENTATIONGENERATOR_TEST_LIVE': 'FALSE',
-    'AIPRESENTATIONGENERATOR_APIKEY': 'NONE',
+    'AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID': {},
+    'AI_PRESENTATION_GENERATOR_TEST_LIVE': 'FALSE',
+    'AI_PRESENTATION_GENERATOR_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.AIPRESENTATIONGENERATOR_TEST_LIVE
+  const live = 'TRUE' === env.AI_PRESENTATION_GENERATOR_TEST_LIVE
 
   if (live) {
     const client = new AiPresentationGeneratorSDK({
-      apikey: env.AIPRESENTATIONGENERATOR_APIKEY,
+      apikey: env.AI_PRESENTATION_GENERATOR_APIKEY,
     })
 
-    let idmap: any = env['AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID']
+    let idmap: any = env['AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

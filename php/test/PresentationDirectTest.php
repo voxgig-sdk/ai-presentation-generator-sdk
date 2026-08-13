@@ -73,16 +73,16 @@ function presentation_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID" => [],
-        "AIPRESENTATIONGENERATOR_TEST_LIVE" => "FALSE",
-        "AIPRESENTATIONGENERATOR_APIKEY" => "NONE",
+        "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID" => [],
+        "AI_PRESENTATION_GENERATOR_TEST_LIVE" => "FALSE",
+        "AI_PRESENTATION_GENERATOR_APIKEY" => "NONE",
     ]);
 
-    $live = $env["AIPRESENTATIONGENERATOR_TEST_LIVE"] === "TRUE";
+    $live = $env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["AIPRESENTATIONGENERATOR_APIKEY"],
+            "apikey" => $env["AI_PRESENTATION_GENERATOR_APIKEY"],
         ];
         $client = new AiPresentationGeneratorSDK($merged_opts);
         return [

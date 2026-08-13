@@ -271,18 +271,18 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"color_scheme"` |  |
+| `"colorScheme"` |  |
 | `"content"` |  |
-| `"created_at"` |  |
-| `"download_url"` |  |
-| `"expires_at"` |  |
+| `"createdAt"` |  |
+| `"downloadUrl"` |  |
+| `"expiresAt"` |  |
 | `"format"` |  |
 | `"id"` |  |
-| `"include_chart"` |  |
+| `"includeCharts"` |  |
 | `"language"` |  |
 | `"layout"` |  |
-| `"preview_url"` |  |
-| `"slide"` |  |
+| `"previewUrl"` |  |
+| `"slides"` |  |
 | `"status"` |  |
 | `"theme"` |  |
 | `"topic"` |  |
@@ -311,18 +311,18 @@ Create an instance: `presentation := client.Presentation(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `color_scheme` | `string` |  |
+| `colorScheme` | `string` |  |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
-| `download_url` | `string` |  |
-| `expires_at` | `string` |  |
+| `createdAt` | `string` |  |
+| `downloadUrl` | `string` |  |
+| `expiresAt` | `string` |  |
 | `format` | `string` |  |
 | `id` | `string` |  |
-| `include_chart` | `bool` |  |
+| `includeCharts` | `bool` |  |
 | `language` | `string` |  |
 | `layout` | `string` |  |
-| `preview_url` | `string` |  |
-| `slide` | `int` |  |
+| `previewUrl` | `string` |  |
+| `slides` | `int` |  |
 | `status` | `string` |  |
 | `theme` | `string` |  |
 | `topic` | `string` |  |

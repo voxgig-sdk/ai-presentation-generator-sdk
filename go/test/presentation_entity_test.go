@@ -44,7 +44,7 @@ func TestPresentationEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -58,7 +58,7 @@ func TestPresentationEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		presentationRef01Data = core.ToMapAny(presentationRef01DataResult)
+		presentationRef01Data = core.ToMapAny(entityData(presentationRef01DataResult))
 		if presentationRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
@@ -74,7 +74,7 @@ func TestPresentationEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		presentationRef01DataDt0LoadResult := core.ToMapAny(presentationRef01DataDt0Loaded)
+		presentationRef01DataDt0LoadResult := core.ToMapAny(entityData(presentationRef01DataDt0Loaded))
 		if presentationRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}
@@ -122,38 +122,38 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID")
+	entidEnvRaw := os.Getenv("AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID": idmap,
-		"AIPRESENTATIONGENERATOR_TEST_LIVE":      "FALSE",
-		"AIPRESENTATIONGENERATOR_TEST_EXPLAIN":   "FALSE",
-		"AIPRESENTATIONGENERATOR_APIKEY":         "NONE",
+		"AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": idmap,
+		"AI_PRESENTATION_GENERATOR_TEST_LIVE":      "FALSE",
+		"AI_PRESENTATION_GENERATOR_TEST_EXPLAIN":   "FALSE",
+		"AI_PRESENTATION_GENERATOR_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"])
+	idmapResolved := core.ToMapAny(env["AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE" {
+	if env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["AIPRESENTATIONGENERATOR_APIKEY"],
+				"apikey": env["AI_PRESENTATION_GENERATOR_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewAiPresentationGeneratorSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["AIPRESENTATIONGENERATOR_TEST_LIVE"] == "TRUE"
+	live := env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["AIPRESENTATIONGENERATOR_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["AI_PRESENTATION_GENERATOR_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

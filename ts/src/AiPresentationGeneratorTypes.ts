@@ -6,18 +6,18 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Presentation {
-  color_scheme?: string
+  colorScheme?: string
   content: string
-  created_at?: string
-  download_url?: string
-  expires_at?: string
+  createdAt?: string
+  downloadUrl?: string
+  expiresAt?: string
   format?: string
   id?: string
-  include_chart?: boolean
+  includeCharts?: boolean
   language?: string
   layout?: string
-  preview_url?: string
-  slide?: number
+  previewUrl?: string
+  slides?: number
   status?: string
   theme?: string
   topic: string
@@ -28,18 +28,18 @@ export interface PresentationLoadMatch {
 }
 
 export interface PresentationCreateData {
-  color_scheme?: string
+  colorScheme?: string
   content: string
-  created_at?: string
-  download_url?: string
-  expires_at?: string
+  createdAt?: string
+  downloadUrl?: string
+  expiresAt?: string
   format?: string
   id?: string
-  include_chart?: boolean
+  includeCharts?: boolean
   language?: string
   layout?: string
-  preview_url?: string
-  slide?: number
+  previewUrl?: string
+  slides?: number
   status?: string
   theme?: string
   topic: string

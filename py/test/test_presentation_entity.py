@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from aipresentationgenerator_sdk.utility.voxgig_struct import voxgig_struct as vs
 from aipresentationgenerator_sdk import AiPresentationGeneratorSDK
-from core import helpers
+from aipresentationgenerator_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestPresentationEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID JSON to run live")
+                        "set AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID JSON to run live")
         client = setup["client"]
 
         # CREATE
@@ -44,7 +44,7 @@ class TestPresentationEntity:
         presentation_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.presentation"), "presentation_ref01"))
 
-        presentation_ref01_data = helpers.to_map(presentation_ref01_ent.create(presentation_ref01_data, None))
+        presentation_ref01_data = helpers.to_map(runner.entity_data(presentation_ref01_ent.create(presentation_ref01_data, None)))
         assert presentation_ref01_data is not None
         assert presentation_ref01_data["id"] is not None
 
@@ -53,7 +53,7 @@ class TestPresentationEntity:
             "id": presentation_ref01_data["id"],
         }
         presentation_ref01_data_dt0_loaded = presentation_ref01_ent.load(presentation_ref01_match_dt0, None)
-        presentation_ref01_data_dt0_load_result = helpers.to_map(presentation_ref01_data_dt0_loaded)
+        presentation_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(presentation_ref01_data_dt0_loaded))
         assert presentation_ref01_data_dt0_load_result is not None
         assert presentation_ref01_data_dt0_load_result["id"] == presentation_ref01_data["id"]
 
@@ -88,37 +88,37 @@ def _presentation_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID")
+        "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID": idmap,
-        "AIPRESENTATIONGENERATOR_TEST_LIVE": "FALSE",
-        "AIPRESENTATIONGENERATOR_TEST_EXPLAIN": "FALSE",
-        "AIPRESENTATIONGENERATOR_APIKEY": "NONE",
+        "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": idmap,
+        "AI_PRESENTATION_GENERATOR_TEST_LIVE": "FALSE",
+        "AI_PRESENTATION_GENERATOR_TEST_EXPLAIN": "FALSE",
+        "AI_PRESENTATION_GENERATOR_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("AIPRESENTATIONGENERATOR_TEST_PRESENTATION_ENTID"))
+        env.get("AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 
-    if env.get("AIPRESENTATIONGENERATOR_TEST_LIVE") == "TRUE":
+    if env.get("AI_PRESENTATION_GENERATOR_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AIPRESENTATIONGENERATOR_APIKEY"),
+                "apikey": env.get("AI_PRESENTATION_GENERATOR_APIKEY"),
             },
             extra or {},
         ])
         client = AiPresentationGeneratorSDK(helpers.to_map(merged_opts))
 
-    _live = env.get("AIPRESENTATIONGENERATOR_TEST_LIVE") == "TRUE"
+    _live = env.get("AI_PRESENTATION_GENERATOR_TEST_LIVE") == "TRUE"
     return {
         "client": client,
         "data": entity_data,
         "idmap": idmap_resolved,
         "env": env,
-        "explain": env.get("AIPRESENTATIONGENERATOR_TEST_EXPLAIN") == "TRUE",
+        "explain": env.get("AI_PRESENTATION_GENERATOR_TEST_EXPLAIN") == "TRUE",
         "live": _live,
         "synthetic_only": _live and not _idmap_overridden,
         "now": int(time.time() * 1000),

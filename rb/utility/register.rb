@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AiPresentationGeneratorUtility.registrar = ->(u) {
   u.prepare_params = AiPresentationGeneratorUtilities::PrepareParams
   u.prepare_path = AiPresentationGeneratorUtilities::PreparePath
   u.prepare_query = AiPresentationGeneratorUtilities::PrepareQuery
+  u.graphql_body = AiPresentationGeneratorUtilities::GraphqlBody
+  u.graphql_errors = AiPresentationGeneratorUtilities::GraphqlErrors
   u.result_basic = AiPresentationGeneratorUtilities::ResultBasic
   u.result_body = AiPresentationGeneratorUtilities::ResultBody
   u.result_headers = AiPresentationGeneratorUtilities::ResultHeaders

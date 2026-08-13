@@ -117,18 +117,18 @@ const presentation = client.Presentation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `color_scheme` | `string` | No |  |
+| `colorScheme` | `string` | No |  |
 | `content` | `string` | Yes |  |
-| `created_at` | `string` | No |  |
-| `download_url` | `string` | No |  |
-| `expires_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
+| `downloadUrl` | `string` | No |  |
+| `expiresAt` | `string` | No |  |
 | `format` | `string` | No |  |
 | `id` | `string` | No |  |
-| `include_chart` | `boolean` | No |  |
+| `includeCharts` | `boolean` | No |  |
 | `language` | `string` | No |  |
 | `layout` | `string` | No |  |
-| `preview_url` | `string` | No |  |
-| `slide` | `number` | No |  |
+| `previewUrl` | `string` | No |  |
+| `slides` | `number` | No |  |
 | `status` | `string` | No |  |
 | `theme` | `string` | No |  |
 | `topic` | `string` | Yes |  |

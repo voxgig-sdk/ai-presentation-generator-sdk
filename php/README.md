@@ -37,7 +37,7 @@ $client = new AiPresentationGeneratorSDK([
 
 ```php
 try {
-    // load() returns the bare Presentation record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Presentation record (throws on error).
     $presentation = $client->Presentation()->load(["id" => "example_id"]);
     print_r($presentation);
 } catch (\Throwable $err) {
@@ -48,7 +48,7 @@ try {
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Presentation record.
+// create() returns the ENTITY — call data_get() for the created Presentation record.
 $created = $client->Presentation()->create(["content" => "example_content", "topic" => "example_topic"]);
 
 ```
@@ -136,7 +136,8 @@ $client = AiPresentationGeneratorSDK::test([
     "entity" => ["presentation" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $presentation = $client->Presentation()->load(["id" => "test01"]);
 print_r($presentation);
 ```
@@ -238,7 +239,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -260,18 +261,18 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `color_scheme` |  |
+| `colorScheme` |  |
 | `content` |  |
-| `created_at` |  |
-| `download_url` |  |
-| `expires_at` |  |
+| `createdAt` |  |
+| `downloadUrl` |  |
+| `expiresAt` |  |
 | `format` |  |
 | `id` |  |
-| `include_chart` |  |
+| `includeCharts` |  |
 | `language` |  |
 | `layout` |  |
-| `preview_url` |  |
-| `slide` |  |
+| `previewUrl` |  |
+| `slides` |  |
 | `status` |  |
 | `theme` |  |
 | `topic` |  |
@@ -300,18 +301,18 @@ Create an instance: `$presentation = $client->Presentation();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `color_scheme` | `string` |  |
+| `colorScheme` | `string` |  |
 | `content` | `string` |  |
-| `created_at` | `string` |  |
-| `download_url` | `string` |  |
-| `expires_at` | `string` |  |
+| `createdAt` | `string` |  |
+| `downloadUrl` | `string` |  |
+| `expiresAt` | `string` |  |
 | `format` | `string` |  |
 | `id` | `string` |  |
-| `include_chart` | `bool` |  |
+| `includeCharts` | `bool` |  |
 | `language` | `string` |  |
 | `layout` | `string` |  |
-| `preview_url` | `string` |  |
-| `slide` | `int` |  |
+| `previewUrl` | `string` |  |
+| `slides` | `int` |  |
 | `status` | `string` |  |
 | `theme` | `string` |  |
 | `topic` | `string` |  |
@@ -319,7 +320,7 @@ Create an instance: `$presentation = $client->Presentation();`
 #### Example: Load
 
 ```php
-// load() returns the bare Presentation record (throws on error).
+// load() returns the ENTITY — call data_get() for the Presentation record (throws on error).
 $presentation = $client->Presentation()->load(["id" => "presentation_id"]);
 ```
 
