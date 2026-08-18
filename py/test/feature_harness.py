@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from aipresentationgenerator_sdk.config import make_config
+from aipresentationgenerator_sdk.config import shared_config
 from aipresentationgenerator_sdk.features import _make_feature
 from aipresentationgenerator_sdk.core.control import AiPresentationGeneratorControl
 from aipresentationgenerator_sdk.core.error import AiPresentationGeneratorError
@@ -24,7 +24,7 @@ from aipresentationgenerator_sdk.core.spec import AiPresentationGeneratorSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

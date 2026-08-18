@@ -40,7 +40,7 @@ class AiPresentationGeneratorSDK
         $utility = new AiPresentationGeneratorUtility();
         $this->_utility = $utility;
 
-        $config = AiPresentationGeneratorConfig::make_config();
+        $config = AiPresentationGeneratorConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

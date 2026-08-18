@@ -28,7 +28,7 @@ class AiPresentationGeneratorSDK
     utility = AiPresentationGeneratorUtility.new
     @_utility = utility
 
-    config = AiPresentationGeneratorConfig.make_config
+    config = AiPresentationGeneratorConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
