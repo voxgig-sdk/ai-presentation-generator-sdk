@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'AiPresentationGenerator',
+        slug: "ai-presentation-generator",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -60,64 +71,79 @@ class Config {
       "fields": [
         {
           "name": "colorScheme",
+          "short": "Primary color scheme for the presentation",
           "type": "`$STRING`"
         },
         {
           "name": "content",
           "req": true,
+          "short": "The main content or key points for the presentation",
           "type": "`$STRING`"
         },
         {
           "name": "createdAt",
+          "short": "Timestamp when the presentation was created",
           "type": "`$STRING`"
         },
         {
           "name": "downloadUrl",
+          "short": "URL to download the generated presentation",
           "type": "`$STRING`"
         },
         {
           "name": "expiresAt",
+          "short": "Timestamp when the download link expires",
           "type": "`$STRING`"
         },
         {
           "name": "format",
+          "short": "File format of the presentation",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the presentation",
           "type": "`$STRING`"
         },
         {
           "name": "includeCharts",
+          "short": "Whether to include charts and graphs where applicable",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "language",
+          "short": "Language for the presentation content",
           "type": "`$STRING`"
         },
         {
           "name": "layout",
+          "short": "Layout style for the slides",
           "type": "`$STRING`"
         },
         {
           "name": "previewUrl",
+          "short": "URL to preview the presentation online",
           "type": "`$STRING`"
         },
         {
           "name": "slides",
+          "short": "Number of slides in the presentation",
           "type": "`$INTEGER`"
         },
         {
           "name": "status",
+          "short": "Current status of the presentation generation",
           "type": "`$STRING`"
         },
         {
           "name": "theme",
+          "short": "Applied theme",
           "type": "`$STRING`"
         },
         {
           "name": "topic",
           "req": true,
+          "short": "The main topic or title of the presentation",
           "type": "`$STRING`"
         }
       ],

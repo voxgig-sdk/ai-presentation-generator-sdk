@@ -8,76 +8,91 @@ main: kit: entity: presentation: {
     {
       name: "colorScheme"
       req: false
+      short: "Primary color scheme for the presentation"
       type: "`$STRING`"
     }
     {
       name: "content"
       req: true
+      short: "The main content or key points for the presentation"
       type: "`$STRING`"
     }
     {
       name: "createdAt"
       req: false
+      short: "Timestamp when the presentation was created"
       type: "`$STRING`"
     }
     {
       name: "downloadUrl"
       req: false
+      short: "URL to download the generated presentation"
       type: "`$STRING`"
     }
     {
       name: "expiresAt"
       req: false
+      short: "Timestamp when the download link expires"
       type: "`$STRING`"
     }
     {
       name: "format"
       req: false
+      short: "File format of the presentation"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the presentation"
       type: "`$STRING`"
     }
     {
       name: "includeCharts"
       req: false
+      short: "Whether to include charts and graphs where applicable"
       type: "`$BOOLEAN`"
     }
     {
       name: "language"
       req: false
+      short: "Language for the presentation content"
       type: "`$STRING`"
     }
     {
       name: "layout"
       req: false
+      short: "Layout style for the slides"
       type: "`$STRING`"
     }
     {
       name: "previewUrl"
       req: false
+      short: "URL to preview the presentation online"
       type: "`$STRING`"
     }
     {
       name: "slides"
       req: false
+      short: "Number of slides in the presentation"
       type: "`$INTEGER`"
     }
     {
       name: "status"
       req: false
+      short: "Current status of the presentation generation"
       type: "`$STRING`"
     }
     {
       name: "theme"
       req: false
+      short: "Applied theme"
       type: "`$STRING`"
     }
     {
       name: "topic"
       req: true
+      short: "The main topic or title of the presentation"
       type: "`$STRING`"
     }
   ]

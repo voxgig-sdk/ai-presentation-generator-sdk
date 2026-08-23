@@ -251,21 +251,21 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `colorScheme` |  |
-| `content` |  |
-| `createdAt` |  |
-| `downloadUrl` |  |
-| `expiresAt` |  |
-| `format` |  |
-| `id` |  |
-| `includeCharts` |  |
-| `language` |  |
-| `layout` |  |
-| `previewUrl` |  |
-| `slides` |  |
-| `status` |  |
-| `theme` |  |
-| `topic` |  |
+| `colorScheme` | Primary color scheme for the presentation |
+| `content` | The main content or key points for the presentation |
+| `createdAt` | Timestamp when the presentation was created |
+| `downloadUrl` | URL to download the generated presentation |
+| `expiresAt` | Timestamp when the download link expires |
+| `format` | File format of the presentation |
+| `id` | Unique identifier for the presentation |
+| `includeCharts` | Whether to include charts and graphs where applicable |
+| `language` | Language for the presentation content |
+| `layout` | Layout style for the slides |
+| `previewUrl` | URL to preview the presentation online |
+| `slides` | Number of slides in the presentation |
+| `status` | Current status of the presentation generation |
+| `theme` | Applied theme |
+| `topic` | The main topic or title of the presentation |
 
 Operations: Create, Load.
 
@@ -291,21 +291,21 @@ Create an instance: `presentation = client.Presentation`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `colorScheme` | `String` |  |
-| `content` | `String` |  |
-| `createdAt` | `String` |  |
-| `downloadUrl` | `String` |  |
-| `expiresAt` | `String` |  |
-| `format` | `String` |  |
-| `id` | `String` |  |
-| `includeCharts` | `Boolean` |  |
-| `language` | `String` |  |
-| `layout` | `String` |  |
-| `previewUrl` | `String` |  |
-| `slides` | `Integer` |  |
-| `status` | `String` |  |
-| `theme` | `String` |  |
-| `topic` | `String` |  |
+| `colorScheme` | `String` | Primary color scheme for the presentation |
+| `content` | `String` | The main content or key points for the presentation |
+| `createdAt` | `String` | Timestamp when the presentation was created |
+| `downloadUrl` | `String` | URL to download the generated presentation |
+| `expiresAt` | `String` | Timestamp when the download link expires |
+| `format` | `String` | File format of the presentation |
+| `id` | `String` | Unique identifier for the presentation |
+| `includeCharts` | `Boolean` | Whether to include charts and graphs where applicable |
+| `language` | `String` | Language for the presentation content |
+| `layout` | `String` | Layout style for the slides |
+| `previewUrl` | `String` | URL to preview the presentation online |
+| `slides` | `Integer` | Number of slides in the presentation |
+| `status` | `String` | Current status of the presentation generation |
+| `theme` | `String` | Applied theme |
+| `topic` | `String` | The main topic or title of the presentation |
 
 #### Example: Load
 

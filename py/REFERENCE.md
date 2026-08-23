@@ -88,21 +88,21 @@ presentation = client.Presentation()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `colorScheme` | `str` | No |  |
-| `content` | `str` | Yes |  |
-| `createdAt` | `str` | No |  |
-| `downloadUrl` | `str` | No |  |
-| `expiresAt` | `str` | No |  |
-| `format` | `str` | No |  |
-| `id` | `str` | No |  |
-| `includeCharts` | `bool` | No |  |
-| `language` | `str` | No |  |
-| `layout` | `str` | No |  |
-| `previewUrl` | `str` | No |  |
-| `slides` | `int` | No |  |
-| `status` | `str` | No |  |
-| `theme` | `str` | No |  |
-| `topic` | `str` | Yes |  |
+| `colorScheme` | `str` | No | Primary color scheme for the presentation |
+| `content` | `str` | Yes | The main content or key points for the presentation |
+| `createdAt` | `str` | No | Timestamp when the presentation was created |
+| `downloadUrl` | `str` | No | URL to download the generated presentation |
+| `expiresAt` | `str` | No | Timestamp when the download link expires |
+| `format` | `str` | No | File format of the presentation |
+| `id` | `str` | No | Unique identifier for the presentation |
+| `includeCharts` | `bool` | No | Whether to include charts and graphs where applicable |
+| `language` | `str` | No | Language for the presentation content |
+| `layout` | `str` | No | Layout style for the slides |
+| `previewUrl` | `str` | No | URL to preview the presentation online |
+| `slides` | `int` | No | Number of slides in the presentation |
+| `status` | `str` | No | Current status of the presentation generation |
+| `theme` | `str` | No | Applied theme |
+| `topic` | `str` | Yes | The main topic or title of the presentation |
 
 ### Operations
 

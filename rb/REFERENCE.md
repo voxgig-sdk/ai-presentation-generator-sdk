@@ -94,21 +94,21 @@ presentation = client.Presentation
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `colorScheme` | `String` | No |  |
-| `content` | `String` | Yes |  |
-| `createdAt` | `String` | No |  |
-| `downloadUrl` | `String` | No |  |
-| `expiresAt` | `String` | No |  |
-| `format` | `String` | No |  |
-| `id` | `String` | No |  |
-| `includeCharts` | `Boolean` | No |  |
-| `language` | `String` | No |  |
-| `layout` | `String` | No |  |
-| `previewUrl` | `String` | No |  |
-| `slides` | `Integer` | No |  |
-| `status` | `String` | No |  |
-| `theme` | `String` | No |  |
-| `topic` | `String` | Yes |  |
+| `colorScheme` | `String` | No | Primary color scheme for the presentation |
+| `content` | `String` | Yes | The main content or key points for the presentation |
+| `createdAt` | `String` | No | Timestamp when the presentation was created |
+| `downloadUrl` | `String` | No | URL to download the generated presentation |
+| `expiresAt` | `String` | No | Timestamp when the download link expires |
+| `format` | `String` | No | File format of the presentation |
+| `id` | `String` | No | Unique identifier for the presentation |
+| `includeCharts` | `Boolean` | No | Whether to include charts and graphs where applicable |
+| `language` | `String` | No | Language for the presentation content |
+| `layout` | `String` | No | Layout style for the slides |
+| `previewUrl` | `String` | No | URL to preview the presentation online |
+| `slides` | `Integer` | No | Number of slides in the presentation |
+| `status` | `String` | No | Current status of the presentation generation |
+| `theme` | `String` | No | Applied theme |
+| `topic` | `String` | Yes | The main topic or title of the presentation |
 
 ### Operations
 

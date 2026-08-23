@@ -255,21 +255,21 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `colorScheme` |  |
-| `content` |  |
-| `createdAt` |  |
-| `downloadUrl` |  |
-| `expiresAt` |  |
-| `format` |  |
-| `id` |  |
-| `includeCharts` |  |
-| `language` |  |
-| `layout` |  |
-| `previewUrl` |  |
-| `slides` |  |
-| `status` |  |
-| `theme` |  |
-| `topic` |  |
+| `colorScheme` | Primary color scheme for the presentation |
+| `content` | The main content or key points for the presentation |
+| `createdAt` | Timestamp when the presentation was created |
+| `downloadUrl` | URL to download the generated presentation |
+| `expiresAt` | Timestamp when the download link expires |
+| `format` | File format of the presentation |
+| `id` | Unique identifier for the presentation |
+| `includeCharts` | Whether to include charts and graphs where applicable |
+| `language` | Language for the presentation content |
+| `layout` | Layout style for the slides |
+| `previewUrl` | URL to preview the presentation online |
+| `slides` | Number of slides in the presentation |
+| `status` | Current status of the presentation generation |
+| `theme` | Applied theme |
+| `topic` | The main topic or title of the presentation |
 
 Operations: Create, Load.
 
@@ -295,21 +295,21 @@ Create an instance: `presentation = client.Presentation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `colorScheme` | `str` |  |
-| `content` | `str` |  |
-| `createdAt` | `str` |  |
-| `downloadUrl` | `str` |  |
-| `expiresAt` | `str` |  |
-| `format` | `str` |  |
-| `id` | `str` |  |
-| `includeCharts` | `bool` |  |
-| `language` | `str` |  |
-| `layout` | `str` |  |
-| `previewUrl` | `str` |  |
-| `slides` | `int` |  |
-| `status` | `str` |  |
-| `theme` | `str` |  |
-| `topic` | `str` |  |
+| `colorScheme` | `str` | Primary color scheme for the presentation |
+| `content` | `str` | The main content or key points for the presentation |
+| `createdAt` | `str` | Timestamp when the presentation was created |
+| `downloadUrl` | `str` | URL to download the generated presentation |
+| `expiresAt` | `str` | Timestamp when the download link expires |
+| `format` | `str` | File format of the presentation |
+| `id` | `str` | Unique identifier for the presentation |
+| `includeCharts` | `bool` | Whether to include charts and graphs where applicable |
+| `language` | `str` | Language for the presentation content |
+| `layout` | `str` | Layout style for the slides |
+| `previewUrl` | `str` | URL to preview the presentation online |
+| `slides` | `int` | Number of slides in the presentation |
+| `status` | `str` | Current status of the presentation generation |
+| `theme` | `str` | Applied theme |
+| `topic` | `str` | The main topic or title of the presentation |
 
 #### Example: Load
 

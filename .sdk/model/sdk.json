@@ -36,90 +36,105 @@
               "active": true,
               "name": "colorScheme",
               "req": false,
+              "short": "Primary color scheme for the presentation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "content",
               "req": true,
+              "short": "The main content or key points for the presentation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "Timestamp when the presentation was created",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "downloadUrl",
               "req": false,
+              "short": "URL to download the generated presentation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "expiresAt",
               "req": false,
+              "short": "Timestamp when the download link expires",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "format",
               "req": false,
+              "short": "File format of the presentation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the presentation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "includeCharts",
               "req": false,
+              "short": "Whether to include charts and graphs where applicable",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "language",
               "req": false,
+              "short": "Language for the presentation content",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "layout",
               "req": false,
+              "short": "Layout style for the slides",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "previewUrl",
               "req": false,
+              "short": "URL to preview the presentation online",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "slides",
               "req": false,
+              "short": "Number of slides in the presentation",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Current status of the presentation generation",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "theme",
               "req": false,
+              "short": "Applied theme",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "topic",
               "req": true,
+              "short": "The main topic or title of the presentation",
               "type": "`$STRING`"
             }
           ],

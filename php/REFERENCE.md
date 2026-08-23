@@ -93,21 +93,21 @@ $presentation = $client->Presentation();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `colorScheme` | `string` | No |  |
-| `content` | `string` | Yes |  |
-| `createdAt` | `string` | No |  |
-| `downloadUrl` | `string` | No |  |
-| `expiresAt` | `string` | No |  |
-| `format` | `string` | No |  |
-| `id` | `string` | No |  |
-| `includeCharts` | `bool` | No |  |
-| `language` | `string` | No |  |
-| `layout` | `string` | No |  |
-| `previewUrl` | `string` | No |  |
-| `slides` | `int` | No |  |
-| `status` | `string` | No |  |
-| `theme` | `string` | No |  |
-| `topic` | `string` | Yes |  |
+| `colorScheme` | `string` | No | Primary color scheme for the presentation |
+| `content` | `string` | Yes | The main content or key points for the presentation |
+| `createdAt` | `string` | No | Timestamp when the presentation was created |
+| `downloadUrl` | `string` | No | URL to download the generated presentation |
+| `expiresAt` | `string` | No | Timestamp when the download link expires |
+| `format` | `string` | No | File format of the presentation |
+| `id` | `string` | No | Unique identifier for the presentation |
+| `includeCharts` | `bool` | No | Whether to include charts and graphs where applicable |
+| `language` | `string` | No | Language for the presentation content |
+| `layout` | `string` | No | Layout style for the slides |
+| `previewUrl` | `string` | No | URL to preview the presentation online |
+| `slides` | `int` | No | Number of slides in the presentation |
+| `status` | `string` | No | Current status of the presentation generation |
+| `theme` | `string` | No | Applied theme |
+| `topic` | `string` | Yes | The main topic or title of the presentation |
 
 ### Operations
 

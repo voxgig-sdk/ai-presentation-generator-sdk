@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -303,21 +303,21 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `colorScheme` |  |
-| `content` |  |
-| `createdAt` |  |
-| `downloadUrl` |  |
-| `expiresAt` |  |
-| `format` |  |
-| `id` |  |
-| `includeCharts` |  |
-| `language` |  |
-| `layout` |  |
-| `previewUrl` |  |
-| `slides` |  |
-| `status` |  |
-| `theme` |  |
-| `topic` |  |
+| `colorScheme` | Primary color scheme for the presentation |
+| `content` | The main content or key points for the presentation |
+| `createdAt` | Timestamp when the presentation was created |
+| `downloadUrl` | URL to download the generated presentation |
+| `expiresAt` | Timestamp when the download link expires |
+| `format` | File format of the presentation |
+| `id` | Unique identifier for the presentation |
+| `includeCharts` | Whether to include charts and graphs where applicable |
+| `language` | Language for the presentation content |
+| `layout` | Layout style for the slides |
+| `previewUrl` | URL to preview the presentation online |
+| `slides` | Number of slides in the presentation |
+| `status` | Current status of the presentation generation |
+| `theme` | Applied theme |
+| `topic` | The main topic or title of the presentation |
 
 Operations: create, load.
 
@@ -343,21 +343,21 @@ Create an instance: `const presentation = client.Presentation()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `colorScheme` | `string` |  |
-| `content` | `string` |  |
-| `createdAt` | `string` |  |
-| `downloadUrl` | `string` |  |
-| `expiresAt` | `string` |  |
-| `format` | `string` |  |
-| `id` | `string` |  |
-| `includeCharts` | `boolean` |  |
-| `language` | `string` |  |
-| `layout` | `string` |  |
-| `previewUrl` | `string` |  |
-| `slides` | `number` |  |
-| `status` | `string` |  |
-| `theme` | `string` |  |
-| `topic` | `string` |  |
+| `colorScheme` | `string` | Primary color scheme for the presentation |
+| `content` | `string` | The main content or key points for the presentation |
+| `createdAt` | `string` | Timestamp when the presentation was created |
+| `downloadUrl` | `string` | URL to download the generated presentation |
+| `expiresAt` | `string` | Timestamp when the download link expires |
+| `format` | `string` | File format of the presentation |
+| `id` | `string` | Unique identifier for the presentation |
+| `includeCharts` | `boolean` | Whether to include charts and graphs where applicable |
+| `language` | `string` | Language for the presentation content |
+| `layout` | `string` | Layout style for the slides |
+| `previewUrl` | `string` | URL to preview the presentation online |
+| `slides` | `number` | Number of slides in the presentation |
+| `status` | `string` | Current status of the presentation generation |
+| `theme` | `string` | Applied theme |
+| `topic` | `string` | The main topic or title of the presentation |
 
 #### Example: Load
 
