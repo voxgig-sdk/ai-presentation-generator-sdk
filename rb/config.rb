@@ -28,6 +28,7 @@ module AiPresentationGeneratorConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
