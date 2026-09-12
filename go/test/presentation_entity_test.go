@@ -52,7 +52,7 @@ func TestPresentationEntity(t *testing.T) {
 		// CREATE
 		presentationRef01Ent := client.Presentation(nil)
 		presentationRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "presentation"}, setup.data), "presentation_ref01"))
+			vs.GetPath(setup.data, []any{"new", "presentation"}), "presentation_ref01"))
 
 		presentationRef01DataResult, err := presentationRef01Ent.Create(presentationRef01Data, nil)
 		if err != nil {
@@ -109,7 +109,7 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"presentation01", "presentation02", "presentation03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -129,7 +129,7 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 		"AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": idmap,
 		"AI_PRESENTATION_GENERATOR_TEST_LIVE":      "FALSE",
 		"AI_PRESENTATION_GENERATOR_TEST_EXPLAIN":   "FALSE",
-		"AI_PRESENTATION_GENERATOR_APIKEY":         "NONE",
+		"AI_PRESENTATION_GENERATOR_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID"])
@@ -138,11 +138,23 @@ func presentationBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["AI_PRESENTATION_GENERATOR_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewAiPresentationGeneratorSDK(core.ToMapAny(mergedOpts))
 	}

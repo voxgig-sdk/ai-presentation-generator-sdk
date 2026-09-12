@@ -65,15 +65,18 @@ def _presentation_direct_setup(mockres):
     env = runner.env_override({
         "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": {},
         "AI_PRESENTATION_GENERATOR_TEST_LIVE": "FALSE",
-        "AI_PRESENTATION_GENERATOR_APIKEY": "NONE",
+        "AI_PRESENTATION_GENERATOR_APIKEY": "",
     })
 
     live = env.get("AI_PRESENTATION_GENERATOR_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("AI_PRESENTATION_GENERATOR_APIKEY"),
-        }
+        })
         client = AiPresentationGeneratorSDK(merged_opts)
         return {
             "client": client,

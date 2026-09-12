@@ -75,15 +75,17 @@ function presentation_direct_setup($mockres)
     $env = Runner::env_override([
         "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID" => [],
         "AI_PRESENTATION_GENERATOR_TEST_LIVE" => "FALSE",
-        "AI_PRESENTATION_GENERATOR_APIKEY" => "NONE",
+        "AI_PRESENTATION_GENERATOR_APIKEY" => "",
     ]);
 
     $live = $env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["AI_PRESENTATION_GENERATOR_APIKEY"],
-        ];
+        ]);
         $client = new AiPresentationGeneratorSDK($merged_opts);
         return [
             "client" => $client,

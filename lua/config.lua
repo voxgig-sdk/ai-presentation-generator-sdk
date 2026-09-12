@@ -46,16 +46,19 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "createdAt",
             ["short"] = "Timestamp when the presentation was created",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "downloadUrl",
             ["short"] = "URL to download the generated presentation",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "expiresAt",
             ["short"] = "Timestamp when the download link expires",
             ["type"] = "`$STRING`",
@@ -86,6 +89,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "previewUrl",
             ["short"] = "URL to preview the presentation online",
             ["type"] = "`$STRING`",
@@ -112,6 +116,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "presentation",
         ["op"] = {
           ["create"] = {
@@ -123,13 +131,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/presentations",
-                ["parts"] = {
-                  "presentations",
+                ["segments"] = {
+                  {
+                    ["lit"] = "presentations",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "presentations",
                 },
               },
             },
@@ -154,13 +167,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/presentations/{presentationId}",
-                ["parts"] = {
-                  "presentations",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["presentationId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "presentations",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -171,6 +188,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "presentations",
+                  "{id}",
                 },
               },
             },

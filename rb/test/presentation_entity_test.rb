@@ -86,7 +86,7 @@ def presentation_basic_setup(extra)
     "AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID" => idmap,
     "AI_PRESENTATION_GENERATOR_TEST_LIVE" => "FALSE",
     "AI_PRESENTATION_GENERATOR_TEST_EXPLAIN" => "FALSE",
-    "AI_PRESENTATION_GENERATOR_APIKEY" => "NONE",
+    "AI_PRESENTATION_GENERATOR_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,6 +97,9 @@ def presentation_basic_setup(extra)
 
   if env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["AI_PRESENTATION_GENERATOR_APIKEY"],
       },

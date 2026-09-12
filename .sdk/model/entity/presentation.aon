@@ -18,18 +18,21 @@ main: kit: entity: presentation: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "Timestamp when the presentation was created"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "downloadUrl"
       req: false
       short: "URL to download the generated presentation"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expiresAt"
       req: false
       short: "Timestamp when the download link expires"
@@ -66,6 +69,7 @@ main: kit: entity: presentation: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "previewUrl"
       req: false
       short: "URL to preview the presentation online"
@@ -110,8 +114,10 @@ main: kit: entity: presentation: {
         {
           method: "POST"
           orig: "/presentations"
-          parts: [
-            "presentations"
+          segments: [
+            {
+              lit: "presentations"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -138,15 +144,19 @@ main: kit: entity: presentation: {
           }
           method: "GET"
           orig: "/presentations/{presentationId}"
-          parts: [
-            "presentations"
-            "{id}"
-          ]
           rename: {
             param: {
               presentationId: "id"
             }
           }
+          segments: [
+            {
+              lit: "presentations"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -1,6 +1,14 @@
 # AiPresentationGenerator SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -67,16 +75,19 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "Timestamp when the presentation was created",
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "downloadUrl",
             "short": "URL to download the generated presentation",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "expiresAt",
             "short": "Timestamp when the download link expires",
             "type": "`$STRING`",
@@ -107,6 +118,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "previewUrl",
             "short": "URL to preview the presentation online",
             "type": "`$STRING`",
@@ -133,6 +145,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "presentation",
         "op": {
           "create": {
@@ -144,14 +160,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/presentations",
-                "parts": [
-                  "presentations",
+                "segments": [
+                  {
+                    "lit": "presentations",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "presentations",
+                ],
               },
             ],
           },
@@ -175,15 +196,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/presentations/{presentationId}",
-                "parts": [
-                  "presentations",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "presentationId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "presentations",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -193,6 +218,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "presentations",
+                  "{id}",
+                ],
               },
             ],
           },

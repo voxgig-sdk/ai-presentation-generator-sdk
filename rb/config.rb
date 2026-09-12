@@ -58,16 +58,19 @@ module AiPresentationGeneratorConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "Timestamp when the presentation was created",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "downloadUrl",
               "short" => "URL to download the generated presentation",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "expiresAt",
               "short" => "Timestamp when the download link expires",
               "type" => "`$STRING`",
@@ -98,6 +101,7 @@ module AiPresentationGeneratorConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "previewUrl",
               "short" => "URL to preview the presentation online",
               "type" => "`$STRING`",
@@ -124,6 +128,10 @@ module AiPresentationGeneratorConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "presentation",
           "op" => {
             "create" => {
@@ -135,14 +143,19 @@ module AiPresentationGeneratorConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/presentations",
-                  "parts" => [
-                    "presentations",
+                  "segments" => [
+                    {
+                      "lit" => "presentations",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "presentations",
+                  ],
                 },
               ],
             },
@@ -166,15 +179,19 @@ module AiPresentationGeneratorConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/presentations/{presentationId}",
-                  "parts" => [
-                    "presentations",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "presentationId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "presentations",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -184,6 +201,10 @@ module AiPresentationGeneratorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "presentations",
+                    "{id}",
+                  ],
                 },
               ],
             },

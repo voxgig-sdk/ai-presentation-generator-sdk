@@ -111,14 +111,22 @@ func presentationDirectSetup(mockres any) *presentationDirectSetupResult {
 	env := envOverride(map[string]any{
 		"AI_PRESENTATION_GENERATOR_TEST_PRESENTATION_ENTID": map[string]any{},
 		"AI_PRESENTATION_GENERATOR_TEST_LIVE":    "FALSE",
-		"AI_PRESENTATION_GENERATOR_APIKEY":       "NONE",
+		"AI_PRESENTATION_GENERATOR_APIKEY":       "",
 	})
 
 	live := env["AI_PRESENTATION_GENERATOR_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["AI_PRESENTATION_GENERATOR_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewAiPresentationGeneratorSDK(mergedOpts)
 
