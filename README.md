@@ -105,7 +105,7 @@ local result, err = client:Presentation():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ai-presentation-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
 | Python | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
 | PHP | `voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go` | `go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Presentation():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator-sdk'
 
 const client = new AiPresentationGeneratorSDK({
   apikey: process.env.AI_PRESENTATION_GENERATOR_APIKEY,

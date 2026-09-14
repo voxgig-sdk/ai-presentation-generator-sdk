@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator-sdk'
 
 const client = new AiPresentationGeneratorSDK({
   apikey: process.env.AI_PRESENTATION_GENERATOR_APIKEY,
@@ -457,7 +457,7 @@ ai-presentation-generator/
 Import the SDK from the package root:
 
 ```ts
-import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator'
+import { AiPresentationGeneratorSDK } from '@voxgig-sdk/ai-presentation-generator-sdk'
 ```
 
 ### Entity state

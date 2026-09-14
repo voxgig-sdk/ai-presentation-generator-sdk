@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/ai-presentation-generator",
+  "name": "@voxgig-sdk/ai-presentation-generator-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the AI Presentation Generator public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
