@@ -1,12 +1,18 @@
 # AiPresentationGenerator SDK feature factory
 
 from aipresentationgenerator_sdk.feature.base_feature import AiPresentationGeneratorBaseFeature
+from aipresentationgenerator_sdk.feature.ratelimit_feature import AiPresentationGeneratorRatelimitFeature
+from aipresentationgenerator_sdk.feature.retry_feature import AiPresentationGeneratorRetryFeature
 from aipresentationgenerator_sdk.feature.test_feature import AiPresentationGeneratorTestFeature
+from aipresentationgenerator_sdk.feature.timeout_feature import AiPresentationGeneratorTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: AiPresentationGeneratorBaseFeature(),
+    "ratelimit": lambda: AiPresentationGeneratorRatelimitFeature(),
+    "retry": lambda: AiPresentationGeneratorRetryFeature(),
     "test": lambda: AiPresentationGeneratorTestFeature(),
+    "timeout": lambda: AiPresentationGeneratorTimeoutFeature(),
 }
 
 

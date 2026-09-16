@@ -13,7 +13,7 @@
         "language": "s9e",
         "layout": "s9f",
         "previewUrl": "sa0",
-        "slides": "sa1",
+        "slides": 161,
         "status": "sa2",
         "theme": "sa3",
         "topic": "sa4"
@@ -30,7 +30,7 @@
         "language": "s134",
         "layout": "s135",
         "previewUrl": "s136",
-        "slides": "s137",
+        "slides": 311,
         "status": "s138",
         "theme": "s139",
         "topic": "s13a"
@@ -47,7 +47,7 @@
         "language": "s1ca",
         "layout": "s1cb",
         "previewUrl": "s1cc",
-        "slides": "s1cd",
+        "slides": 461,
         "status": "s1ce",
         "theme": "s1cf",
         "topic": "s1d0"
@@ -67,10 +67,545 @@
         "language": "s260",
         "layout": "s261",
         "previewUrl": "s262",
-        "slides": "s263",
+        "slides": 611,
         "status": "s264",
         "theme": "s265",
         "topic": "s266"
+      }
+    }
+  },
+  "requests": {
+    "POST /presentations": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createPresentation",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "basicPresentation": {
+                  "summary": "Basic presentation example",
+                  "value": {
+                    "content": "Introduction to AI Technology",
+                    "layout": "professional",
+                    "slides": 10,
+                    "theme": "modern",
+                    "topic": "Artificial Intelligence"
+                  }
+                },
+                "detailedPresentation": {
+                  "summary": "Detailed presentation with outline",
+                  "value": {
+                    "content": "Quarterly Business Review: Sales increased by 25%, new product launches successful, expanding to 3 new markets",
+                    "includeCharts": true,
+                    "language": "en",
+                    "layout": "business",
+                    "slides": 15,
+                    "theme": "corporate",
+                    "topic": "Q4 Business Review"
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "colorScheme": {
+                    "default": "blue",
+                    "description": "Primary color scheme for the presentation",
+                    "enum": [
+                      "blue",
+                      "red",
+                      "green",
+                      "purple",
+                      "orange",
+                      "neutral"
+                    ],
+                    "example": "blue",
+                    "type": "string"
+                  },
+                  "content": {
+                    "description": "The main content or key points for the presentation",
+                    "example": "Introduction to Machine Learning: supervised learning, unsupervised learning, neural networks",
+                    "maxLength": 10000,
+                    "minLength": 10,
+                    "type": "string"
+                  },
+                  "includeCharts": {
+                    "default": false,
+                    "description": "Whether to include charts and graphs where applicable",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "language": {
+                    "default": "en",
+                    "description": "Language for the presentation content",
+                    "example": "en",
+                    "pattern": "^[a-z]{2}$",
+                    "type": "string"
+                  },
+                  "layout": {
+                    "default": "professional",
+                    "description": "Layout style for the slides",
+                    "enum": [
+                      "professional",
+                      "business",
+                      "educational",
+                      "casual",
+                      "formal"
+                    ],
+                    "example": "professional",
+                    "type": "string"
+                  },
+                  "slides": {
+                    "default": 10,
+                    "description": "Number of slides to generate",
+                    "example": 10,
+                    "maximum": 50,
+                    "minimum": 3,
+                    "type": "integer"
+                  },
+                  "theme": {
+                    "default": "modern",
+                    "description": "Visual theme for the presentation",
+                    "enum": [
+                      "modern",
+                      "classic",
+                      "minimalist",
+                      "corporate",
+                      "creative",
+                      "academic"
+                    ],
+                    "example": "modern",
+                    "type": "string"
+                  },
+                  "topic": {
+                    "description": "The main topic or title of the presentation",
+                    "example": "Introduction to Machine Learning",
+                    "maxLength": 200,
+                    "minLength": 3,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "content",
+                  "topic"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Successful generation",
+                    "value": {
+                      "createdAt": "2024-01-15T10:30:00Z",
+                      "downloadUrl": "https://api.pi.inc/v1/presentations/pres_abc123def456/download",
+                      "format": "pptx",
+                      "id": "pres_abc123def456",
+                      "previewUrl": "https://api.pi.inc/v1/presentations/pres_abc123def456/preview",
+                      "slides": 10,
+                      "status": "completed"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "createdAt": {
+                      "description": "Timestamp when the presentation was created",
+                      "example": "2024-01-15T10:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "downloadUrl": {
+                      "description": "URL to download the generated presentation",
+                      "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/download",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "description": "Timestamp when the download link expires",
+                      "example": "2024-01-22T10:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "format": {
+                      "description": "File format of the presentation",
+                      "enum": [
+                        "pptx",
+                        "pdf",
+                        "key"
+                      ],
+                      "example": "pptx",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the presentation",
+                      "example": "pres_abc123def456",
+                      "type": "string"
+                    },
+                    "previewUrl": {
+                      "description": "URL to preview the presentation online",
+                      "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/preview",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "slides": {
+                      "description": "Number of slides in the presentation",
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "status": {
+                      "description": "Current status of the presentation generation",
+                      "enum": [
+                        "processing",
+                        "completed",
+                        "failed"
+                      ],
+                      "example": "completed",
+                      "type": "string"
+                    },
+                    "theme": {
+                      "description": "Applied theme",
+                      "example": "modern",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Presentation successfully generated"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "invalidInput": {
+                    "summary": "Invalid input example",
+                    "value": {
+                      "code": 400,
+                      "error": "ValidationError",
+                      "message": "Content field is required and cannot be empty"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - Invalid input parameters"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too many requests - Rate limit exceeded"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Include your API key in the X-API-Key header.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    },
+    "GET /presentations/{presentationId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPresentation",
+        "parameters": [
+          {
+            "description": "The unique identifier of the presentation",
+            "in": "path",
+            "name": "presentationId",
+            "required": true,
+            "schema": {
+              "example": "pres_abc123def456",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "createdAt": {
+                      "description": "Timestamp when the presentation was created",
+                      "example": "2024-01-15T10:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "downloadUrl": {
+                      "description": "URL to download the generated presentation",
+                      "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/download",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "description": "Timestamp when the download link expires",
+                      "example": "2024-01-22T10:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "format": {
+                      "description": "File format of the presentation",
+                      "enum": [
+                        "pptx",
+                        "pdf",
+                        "key"
+                      ],
+                      "example": "pptx",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for the presentation",
+                      "example": "pres_abc123def456",
+                      "type": "string"
+                    },
+                    "previewUrl": {
+                      "description": "URL to preview the presentation online",
+                      "example": "https://api.pi.inc/v1/presentations/pres_abc123def456/preview",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "slides": {
+                      "description": "Number of slides in the presentation",
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "status": {
+                      "description": "Current status of the presentation generation",
+                      "enum": [
+                        "processing",
+                        "completed",
+                        "failed"
+                      ],
+                      "example": "completed",
+                      "type": "string"
+                    },
+                    "theme": {
+                      "description": "Applied theme",
+                      "example": "modern",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Presentation details retrieved successfully"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "HTTP status code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "additionalProperties": true,
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error type",
+                      "example": "ValidationError",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Human-readable error message",
+                      "example": "Content field is required and cannot be empty",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Presentation not found"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Include your API key in the X-API-Key header.",
+            "in": "header",
+            "name": "X-API-Key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
       }
     }
   }
