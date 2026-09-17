@@ -105,12 +105,12 @@ local result, err = client:Presentation():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/ai-presentation-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
-| Python | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
-| PHP | `voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/ai-presentation-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/tags) |
+| Python | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/tags) |
+| PHP | `voxgig-sdk/ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go` | `go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go@latest` |
-| Ruby | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
-| Lua | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/releases) |
+| Ruby | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/tags) |
+| Lua | `voxgig-sdk-ai-presentation-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/ai-presentation-generator-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go-cli` | `go install github.com/voxgig-sdk/ai-presentation-generator-sdk/go-cli/cmd/ai-presentation-generator@latest` |
 | Go MCP server | `github.com/voxgig-sdk/ai-presentation-generator-sdk/go-mcp` | `go get github.com/voxgig-sdk/ai-presentation-generator-sdk/go-mcp@latest` |
 

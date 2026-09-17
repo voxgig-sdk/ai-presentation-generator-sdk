@@ -104,6 +104,7 @@ class Config {
         base: "https://api.pi.inc/v1",
         auth: {
             prefix: '',
+            name: 'X-API-Key',
         },
         headers: {
             "content-type": "application/json"
