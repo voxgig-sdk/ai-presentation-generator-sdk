@@ -95,84 +95,99 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "colorScheme",
-						"short": "Primary color scheme for the presentation",
+						"title": "Color Scheme",
 						"type": "`$STRING`",
+						"short": "Primary color scheme for the presentation",
 					},
 					map[string]any{
 						"name": "content",
+						"title": "Content",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The main content or key points for the presentation",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
+						"title": "Created At",
+						"type": "`$STRING`",
 						"short": "Timestamp when the presentation was created",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"format": "uri",
-						"name": "downloadUrl",
-						"short": "URL to download the generated presentation",
-						"type": "`$STRING`",
-					},
-					map[string]any{
 						"format": "date-time",
-						"name": "expiresAt",
-						"short": "Timestamp when the download link expires",
+					},
+					map[string]any{
+						"name": "downloadUrl",
+						"title": "Download Url",
 						"type": "`$STRING`",
+						"short": "URL to download the generated presentation",
+						"format": "uri",
+					},
+					map[string]any{
+						"name": "expiresAt",
+						"title": "Expires At",
+						"type": "`$STRING`",
+						"short": "Timestamp when the download link expires",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "format",
-						"short": "File format of the presentation",
+						"title": "Format",
 						"type": "`$STRING`",
+						"short": "File format of the presentation",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the presentation",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the presentation",
 					},
 					map[string]any{
 						"name": "includeCharts",
-						"short": "Whether to include charts and graphs where applicable",
+						"title": "Include Charts",
 						"type": "`$BOOLEAN`",
+						"short": "Whether to include charts and graphs where applicable",
 					},
 					map[string]any{
 						"name": "language",
-						"short": "Language for the presentation content",
+						"title": "Language",
 						"type": "`$STRING`",
+						"short": "Language for the presentation content",
 					},
 					map[string]any{
 						"name": "layout",
-						"short": "Layout style for the slides",
+						"title": "Layout",
 						"type": "`$STRING`",
+						"short": "Layout style for the slides",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "previewUrl",
-						"short": "URL to preview the presentation online",
+						"title": "Preview Url",
 						"type": "`$STRING`",
+						"short": "URL to preview the presentation online",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "slides",
-						"short": "Number of slides in the presentation",
+						"title": "Slides",
 						"type": "`$INTEGER`",
+						"short": "Number of slides in the presentation",
 					},
 					map[string]any{
 						"name": "status",
-						"short": "Current status of the presentation generation",
+						"title": "Status",
 						"type": "`$STRING`",
+						"short": "Current status of the presentation generation",
 					},
 					map[string]any{
 						"name": "theme",
-						"short": "Applied theme",
+						"title": "Theme",
 						"type": "`$STRING`",
+						"short": "Applied theme",
 					},
 					map[string]any{
 						"name": "topic",
+						"title": "Topic",
+						"type": "`$STRING`",
 						"req": true,
 						"short": "The main topic or title of the presentation",
-						"type": "`$STRING`",
 					},
 				},
 				"id": map[string]any{
@@ -186,7 +201,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/presentations",
@@ -195,14 +209,16 @@ func MakeConfig() map[string]any {
 										"lit": "presentations",
 									},
 								},
-								"select": map[string]any{},
+								"parts": []any{
+									"presentations",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"presentations",
-								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -211,26 +227,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "pres_abc123def456",
-											"kind": "param",
-											"name": "id",
-											"orig": "presentation_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/presentations/{presentationId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"presentationId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "presentations",
@@ -239,18 +238,35 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"presentations",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"presentationId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"presentations",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "presentation_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "pres_abc123def456",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},

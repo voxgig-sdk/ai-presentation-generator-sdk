@@ -120,84 +120,99 @@ def make_config():
         "fields": [
           {
             "name": "colorScheme",
-            "short": "Primary color scheme for the presentation",
+            "title": "Color Scheme",
             "type": "`$STRING`",
+            "short": "Primary color scheme for the presentation",
           },
           {
             "name": "content",
+            "title": "Content",
+            "type": "`$STRING`",
             "req": True,
             "short": "The main content or key points for the presentation",
-            "type": "`$STRING`",
           },
           {
-            "format": "date-time",
             "name": "createdAt",
+            "title": "Created At",
+            "type": "`$STRING`",
             "short": "Timestamp when the presentation was created",
-            "type": "`$STRING`",
-          },
-          {
-            "format": "uri",
-            "name": "downloadUrl",
-            "short": "URL to download the generated presentation",
-            "type": "`$STRING`",
-          },
-          {
             "format": "date-time",
-            "name": "expiresAt",
-            "short": "Timestamp when the download link expires",
+          },
+          {
+            "name": "downloadUrl",
+            "title": "Download Url",
             "type": "`$STRING`",
+            "short": "URL to download the generated presentation",
+            "format": "uri",
+          },
+          {
+            "name": "expiresAt",
+            "title": "Expires At",
+            "type": "`$STRING`",
+            "short": "Timestamp when the download link expires",
+            "format": "date-time",
           },
           {
             "name": "format",
-            "short": "File format of the presentation",
+            "title": "Format",
             "type": "`$STRING`",
+            "short": "File format of the presentation",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the presentation",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the presentation",
           },
           {
             "name": "includeCharts",
-            "short": "Whether to include charts and graphs where applicable",
+            "title": "Include Charts",
             "type": "`$BOOLEAN`",
+            "short": "Whether to include charts and graphs where applicable",
           },
           {
             "name": "language",
-            "short": "Language for the presentation content",
+            "title": "Language",
             "type": "`$STRING`",
+            "short": "Language for the presentation content",
           },
           {
             "name": "layout",
-            "short": "Layout style for the slides",
+            "title": "Layout",
             "type": "`$STRING`",
+            "short": "Layout style for the slides",
           },
           {
-            "format": "uri",
             "name": "previewUrl",
-            "short": "URL to preview the presentation online",
+            "title": "Preview Url",
             "type": "`$STRING`",
+            "short": "URL to preview the presentation online",
+            "format": "uri",
           },
           {
             "name": "slides",
-            "short": "Number of slides in the presentation",
+            "title": "Slides",
             "type": "`$INTEGER`",
+            "short": "Number of slides in the presentation",
           },
           {
             "name": "status",
-            "short": "Current status of the presentation generation",
+            "title": "Status",
             "type": "`$STRING`",
+            "short": "Current status of the presentation generation",
           },
           {
             "name": "theme",
-            "short": "Applied theme",
+            "title": "Theme",
             "type": "`$STRING`",
+            "short": "Applied theme",
           },
           {
             "name": "topic",
+            "title": "Topic",
+            "type": "`$STRING`",
             "req": True,
             "short": "The main topic or title of the presentation",
-            "type": "`$STRING`",
           },
         ],
         "id": {
@@ -211,7 +226,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/presentations",
@@ -220,14 +234,16 @@ def make_config():
                     "lit": "presentations",
                   },
                 ],
-                "select": {},
+                "parts": [
+                  "presentations",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "presentations",
-                ],
+                "args": {},
+                "select": {},
               },
             ],
           },
@@ -236,26 +252,9 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "params": [
-                    {
-                      "example": "pres_abc123def456",
-                      "kind": "param",
-                      "name": "id",
-                      "orig": "presentation_id",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/presentations/{presentationId}",
-                "rename": {
-                  "param": {
-                    "presentationId": "id",
-                  },
-                },
                 "segments": [
                   {
                     "lit": "presentations",
@@ -264,19 +263,36 @@ def make_config():
                     "var": "id",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "parts": [
+                  "presentations",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "presentationId": "id",
+                  },
                 },
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "presentations",
-                  "{id}",
-                ],
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "presentation_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                      "example": "pres_abc123def456",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
               },
             ],
           },

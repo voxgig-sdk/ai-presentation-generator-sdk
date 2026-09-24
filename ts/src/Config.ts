@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -144,84 +137,99 @@ class Config {
       "fields": [
         {
           "name": "colorScheme",
-          "short": "Primary color scheme for the presentation",
-          "type": "`$STRING`"
+          "title": "Color Scheme",
+          "type": "`$STRING`",
+          "short": "Primary color scheme for the presentation"
         },
         {
           "name": "content",
+          "title": "Content",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The main content or key points for the presentation",
-          "type": "`$STRING`"
+          "short": "The main content or key points for the presentation"
         },
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "Timestamp when the presentation was created",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
-          "format": "uri",
           "name": "downloadUrl",
+          "title": "Download Url",
+          "type": "`$STRING`",
           "short": "URL to download the generated presentation",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
-          "format": "date-time",
           "name": "expiresAt",
+          "title": "Expires At",
+          "type": "`$STRING`",
           "short": "Timestamp when the download link expires",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "format",
-          "short": "File format of the presentation",
-          "type": "`$STRING`"
+          "title": "Format",
+          "type": "`$STRING`",
+          "short": "File format of the presentation"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the presentation",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier for the presentation"
         },
         {
           "name": "includeCharts",
-          "short": "Whether to include charts and graphs where applicable",
-          "type": "`$BOOLEAN`"
+          "title": "Include Charts",
+          "type": "`$BOOLEAN`",
+          "short": "Whether to include charts and graphs where applicable"
         },
         {
           "name": "language",
-          "short": "Language for the presentation content",
-          "type": "`$STRING`"
+          "title": "Language",
+          "type": "`$STRING`",
+          "short": "Language for the presentation content"
         },
         {
           "name": "layout",
-          "short": "Layout style for the slides",
-          "type": "`$STRING`"
+          "title": "Layout",
+          "type": "`$STRING`",
+          "short": "Layout style for the slides"
         },
         {
-          "format": "uri",
           "name": "previewUrl",
+          "title": "Preview Url",
+          "type": "`$STRING`",
           "short": "URL to preview the presentation online",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "slides",
-          "short": "Number of slides in the presentation",
-          "type": "`$INTEGER`"
+          "title": "Slides",
+          "type": "`$INTEGER`",
+          "short": "Number of slides in the presentation"
         },
         {
           "name": "status",
-          "short": "Current status of the presentation generation",
-          "type": "`$STRING`"
+          "title": "Status",
+          "type": "`$STRING`",
+          "short": "Current status of the presentation generation"
         },
         {
           "name": "theme",
-          "short": "Applied theme",
-          "type": "`$STRING`"
+          "title": "Theme",
+          "type": "`$STRING`",
+          "short": "Applied theme"
         },
         {
           "name": "topic",
+          "title": "Topic",
+          "type": "`$STRING`",
           "req": true,
-          "short": "The main topic or title of the presentation",
-          "type": "`$STRING`"
+          "short": "The main topic or title of the presentation"
         }
       ],
       "id": {
@@ -235,7 +243,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/presentations",
@@ -244,14 +251,16 @@ class Config {
                   "lit": "presentations"
                 }
               ],
-              "select": {},
+              "parts": [
+                "presentations"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "presentations"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -260,26 +269,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "pres_abc123def456",
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "presentation_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/presentations/{presentationId}",
-              "rename": {
-                "param": {
-                  "presentationId": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "presentations"
@@ -288,19 +280,36 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "presentations",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "presentationId": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "presentations",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "presentation_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "pres_abc123def456"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }

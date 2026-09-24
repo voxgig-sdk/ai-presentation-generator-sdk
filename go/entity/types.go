@@ -1,7 +1,7 @@
 // Typed models for the AiPresentationGenerator SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Presentation is the typed data model for the presentation entity.
 type Presentation struct {
-	ColorScheme *string `json:"colorScheme,omitempty"`
-	Content string `json:"content"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	DownloadUrl *string `json:"downloadUrl,omitempty"`
-	ExpiresAt *string `json:"expiresAt,omitempty"`
-	Format *string `json:"format,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IncludeCharts *bool `json:"includeCharts,omitempty"`
-	Language *string `json:"language,omitempty"`
-	Layout *string `json:"layout,omitempty"`
-	PreviewUrl *string `json:"previewUrl,omitempty"`
-	Slides *int `json:"slides,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Theme *string `json:"theme,omitempty"`
-	Topic string `json:"topic"`
 }
 
 // PresentationLoadMatch is the typed request payload for Presentation.LoadTyped.

@@ -1,0 +1,201 @@
+# Entity: presentation
+
+main: kit: entity: presentation: {
+
+  alias: field: {}
+
+  fields: {
+    colorScheme: {
+      h: "Color Scheme"
+      n: "colorScheme"
+      r: false
+      sh: "Primary color scheme for the presentation"
+      t: "`$STRING`"
+    }
+    content: {
+      h: "Content"
+      n: "content"
+      r: true
+      sh: "The main content or key points for the presentation"
+      t: "`$STRING`"
+    }
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      sh: "Timestamp when the presentation was created"
+      t: "`$STRING`"
+    }
+    downloadUrl: {
+      fo: "uri"
+      h: "Download Url"
+      n: "downloadUrl"
+      r: false
+      sh: "URL to download the generated presentation"
+      t: "`$STRING`"
+    }
+    expiresAt: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expiresAt"
+      r: false
+      sh: "Timestamp when the download link expires"
+      t: "`$STRING`"
+    }
+    format: {
+      h: "Format"
+      n: "format"
+      r: false
+      sh: "File format of the presentation"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the presentation"
+      t: "`$STRING`"
+    }
+    includeCharts: {
+      h: "Include Charts"
+      n: "includeCharts"
+      r: false
+      sh: "Whether to include charts and graphs where applicable"
+      t: "`$BOOLEAN`"
+    }
+    language: {
+      h: "Language"
+      n: "language"
+      r: false
+      sh: "Language for the presentation content"
+      t: "`$STRING`"
+    }
+    layout: {
+      h: "Layout"
+      n: "layout"
+      r: false
+      sh: "Layout style for the slides"
+      t: "`$STRING`"
+    }
+    previewUrl: {
+      fo: "uri"
+      h: "Preview Url"
+      n: "previewUrl"
+      r: false
+      sh: "URL to preview the presentation online"
+      t: "`$STRING`"
+    }
+    slides: {
+      h: "Slides"
+      n: "slides"
+      r: false
+      sh: "Number of slides in the presentation"
+      t: "`$INTEGER`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Current status of the presentation generation"
+      t: "`$STRING`"
+    }
+    theme: {
+      h: "Theme"
+      n: "theme"
+      r: false
+      sh: "Applied theme"
+      t: "`$STRING`"
+    }
+    topic: {
+      h: "Topic"
+      n: "topic"
+      r: true
+      sh: "The main topic or title of the presentation"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "presentation"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /presentations"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/presentations"
+          s: [
+            {
+              lit: "presentations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /presentations/{presentationId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "pres_abc123def456"
+                k: "param"
+                n: "id"
+                or: "presentation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/presentations/{presentationId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              presentationId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "presentations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
