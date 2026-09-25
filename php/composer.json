@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/ai-presentation-generator",
+  "name": "voxgig-sdk/ai-presentation-generator-sdk",
   "description": "Unofficial generated PHP SDK for the AI Presentation Generator public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "ai-presentation-generator"],
