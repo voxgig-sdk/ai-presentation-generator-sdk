@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 AiPresentationGeneratorUtility::setRegistrar(function (AiPresentationGeneratorUtility $u): void {
     $u->clean = [AiPresentationGeneratorClean::class, 'call'];
+    $u->clean_add = [AiPresentationGeneratorClean::class, 'add'];
+    $u->clean_explain = [AiPresentationGeneratorDone::class, 'clean_explain'];
     $u->done = [AiPresentationGeneratorDone::class, 'call'];
     $u->make_error = [AiPresentationGeneratorMakeError::class, 'call'];
     $u->feature_add = [AiPresentationGeneratorFeatureAdd::class, 'call'];

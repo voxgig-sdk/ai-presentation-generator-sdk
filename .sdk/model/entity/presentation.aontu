@@ -161,7 +161,7 @@ main: kit: entity: presentation: {
                 ex: "pres_abc123def456"
                 k: "param"
                 n: "id"
-                or: "presentation_id"
+                or: "presentationId"
                 r: true
                 t: "`$STRING`"
               }

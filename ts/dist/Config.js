@@ -271,7 +271,7 @@ class Config {
                                 "params": [
                                     {
                                         "name": "id",
-                                        "orig": "presentation_id",
+                                        "orig": "presentationId",
                                         "type": "`$STRING`",
                                         "kind": "param",
                                         "reqd": true,

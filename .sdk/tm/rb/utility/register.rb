@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 AiPresentationGeneratorUtility.registrar = ->(u) {
   u.clean = AiPresentationGeneratorUtilities::Clean
+  u.clean_add = AiPresentationGeneratorUtilities::CleanAdd
+  u.clean_explain = AiPresentationGeneratorUtilities::CleanExplain
   u.done = AiPresentationGeneratorUtilities::Done
   u.make_error = AiPresentationGeneratorUtilities::MakeError
   u.feature_add = AiPresentationGeneratorUtilities::FeatureAdd
