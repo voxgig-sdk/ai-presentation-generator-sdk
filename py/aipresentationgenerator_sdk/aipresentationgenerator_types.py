@@ -48,15 +48,8 @@ class PresentationCreateDataRequired(TypedDict):
 
 class PresentationCreateData(PresentationCreateDataRequired, total=False):
     colorScheme: str
-    createdAt: str
-    downloadUrl: str
-    expiresAt: str
-    format: str
-    id: str
     includeCharts: bool
     language: str
     layout: str
-    previewUrl: str
     slides: int
-    status: str
     theme: str

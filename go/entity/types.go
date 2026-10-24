@@ -25,17 +25,10 @@ type PresentationLoadMatch struct {
 type PresentationCreateData struct {
 	ColorScheme *string `json:"colorScheme,omitempty"`
 	Content string `json:"content"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	DownloadUrl *string `json:"downloadUrl,omitempty"`
-	ExpiresAt *string `json:"expiresAt,omitempty"`
-	Format *string `json:"format,omitempty"`
-	Id *string `json:"id,omitempty"`
 	IncludeCharts *bool `json:"includeCharts,omitempty"`
 	Language *string `json:"language,omitempty"`
 	Layout *string `json:"layout,omitempty"`
-	PreviewUrl *string `json:"previewUrl,omitempty"`
 	Slides *int `json:"slides,omitempty"`
-	Status *string `json:"status,omitempty"`
 	Theme *string `json:"theme,omitempty"`
 	Topic string `json:"topic"`
 }

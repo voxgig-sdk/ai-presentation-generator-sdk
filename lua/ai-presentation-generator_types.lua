@@ -29,17 +29,10 @@
 ---@class PresentationCreateData
 ---@field colorScheme? string
 ---@field content string
----@field createdAt? string
----@field downloadUrl? string
----@field expiresAt? string
----@field format? string
----@field id? string
 ---@field includeCharts? boolean
 ---@field language? string
 ---@field layout? string
----@field previewUrl? string
 ---@field slides? number
----@field status? string
 ---@field theme? string
 ---@field topic string
 

@@ -127,6 +127,16 @@ main: kit: entity: presentation: {
       name: "create"
       points: [
         {
+          bf: [
+            "colorScheme"
+            "content"
+            "includeCharts"
+            "language"
+            "layout"
+            "slides"
+            "theme"
+            "topic"
+          ]
           co: {
             id: "POST /presentations"
             source: "openapi3"
@@ -134,6 +144,10 @@ main: kit: entity: presentation: {
           }
           m: "POST"
           o: "/presentations"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "presentations"
@@ -178,6 +192,10 @@ main: kit: entity: presentation: {
             param: {
               presentationId: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -43,17 +43,10 @@ class PresentationCreateData
 {
     public ?string $colorScheme = null;
     public string $content;
-    public ?string $createdAt = null;
-    public ?string $downloadUrl = null;
-    public ?string $expiresAt = null;
-    public ?string $format = null;
-    public ?string $id = null;
     public ?bool $includeCharts = null;
     public ?string $language = null;
     public ?string $layout = null;
-    public ?string $previewUrl = null;
     public ?int $slides = null;
-    public ?string $status = null;
     public ?string $theme = null;
     public string $topic;
 }

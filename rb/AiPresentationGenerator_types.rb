@@ -90,21 +90,6 @@ PresentationLoadMatch = Struct.new(
 # @!attribute [rw] content
 #   @return [String]
 #
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] downloadUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] expiresAt
-#   @return [String, nil]
-#
-# @!attribute [rw] format
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
 # @!attribute [rw] includeCharts
 #   @return [Boolean, nil]
 #
@@ -114,14 +99,8 @@ PresentationLoadMatch = Struct.new(
 # @!attribute [rw] layout
 #   @return [String, nil]
 #
-# @!attribute [rw] previewUrl
-#   @return [String, nil]
-#
 # @!attribute [rw] slides
 #   @return [Integer, nil]
-#
-# @!attribute [rw] status
-#   @return [String, nil]
 #
 # @!attribute [rw] theme
 #   @return [String, nil]
@@ -131,17 +110,10 @@ PresentationLoadMatch = Struct.new(
 PresentationCreateData = Struct.new(
   :colorScheme,
   :content,
-  :createdAt,
-  :downloadUrl,
-  :expiresAt,
-  :format,
-  :id,
   :includeCharts,
   :language,
   :layout,
-  :previewUrl,
   :slides,
-  :status,
   :theme,
   :topic,
   keyword_init: true
